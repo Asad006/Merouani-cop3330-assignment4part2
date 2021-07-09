@@ -15,7 +15,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ItemListController implements Initializable {
-    ItemListManager itemListManager = new ItemListManager();
+    private final ItemListManager itemListManager = new ItemListManager();
+    private String dueDate = "";
 
     ObservableList<Item> itemsData;
     ObservableList<Item> itemsDataIncomplete;
@@ -70,6 +71,9 @@ public class ItemListController implements Initializable {
     private Button AddTaskButton;
 
     @FXML
+    private TextArea descriptionTextArea;
+
+    @FXML
     private TextField itemName;
 
     @FXML
@@ -78,8 +82,7 @@ public class ItemListController implements Initializable {
     @FXML
     private Button addItem;
 
-    @FXML
-    private TextField dueDate;
+
 
     @FXML
     public void addItemClicked(ActionEvent actionEvent) {
@@ -87,6 +90,7 @@ public class ItemListController implements Initializable {
         // get the the textField content
         // call TodolistManager to set the the new content into the todolist.
         // clear the textField
+
 
     }
 
