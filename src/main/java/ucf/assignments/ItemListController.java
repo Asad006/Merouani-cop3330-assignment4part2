@@ -4,6 +4,7 @@ package ucf.assignments;
  *  Copyright 2021 Asad merouani
  */
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,15 +13,16 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ItemListController implements Initializable {
     private final ItemListManager itemListManager = new ItemListManager();
     private String dueDate = "";
 
-    ObservableList<Item> itemsData;
-    ObservableList<Item> itemsDataIncomplete;
-    ObservableList<Item> itemsDataComplete;
+    private final ObservableList<Item> itemsData = FXCollections.observableArrayList();
+    ObservableList<Item> itemsDataIncomplete= FXCollections.observableArrayList();;
+    ObservableList<Item> itemsDataComplete= FXCollections.observableArrayList();;
 
     @FXML
     private TableView<Item> itemTableView;
@@ -83,7 +85,6 @@ public class ItemListController implements Initializable {
     private Button addItem;
 
 
-
     @FXML
     public void addItemClicked(ActionEvent actionEvent) {
 
@@ -91,6 +92,50 @@ public class ItemListController implements Initializable {
         // call TodolistManager to set the the new content into the todolist.
         // clear the textField
 
+        String itemNam = itemName.getText();
+        String fieldDescription = descriptionTextArea.getText();
+
+        if (fieldDescription.equals("")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Missing information.");
+            alert.setHeaderText("");
+            alert.setContentText("Please enter a description for the item.");
+            alert.showAndWait().ifPresent(rs -> {
+                if (rs == ButtonType.OK) {
+                    System.out.println("Pressed OK.");
+                }
+            });
+        } else if (itemNam.equals("")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Missing information.");
+            alert.setHeaderText("");
+            alert.setContentText("Please enter a title for the item.");
+            alert.showAndWait().ifPresent(rs -> {
+                if (rs == ButtonType.OK) {
+                    System.out.println("Pressed OK.");
+                }
+            });
+        } else if (dueDate.equals("")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Missing information.");
+            alert.setHeaderText("Please enter a valid due date.");
+            alert.setContentText("Your date could have an incorrect format.\n " +
+                    "Format should be YYYY-MM-DD.\n \nYour date could be in the past.");
+            alert.showAndWait().ifPresent(rs -> {
+                if (rs == ButtonType.OK) {
+                    System.out.println("Pressed OK.");
+                }
+            });
+        } else {
+            itemsData.add(new Item(itemNam, fieldDescription, dueDate));
+            itemTableView.setItems(itemsData);
+
+            itemName.clear();
+            descriptionTextArea.clear();
+            dueDatePicker.setValue(null);
+            dueDate = "";
+
+        }
 
     }
 
@@ -133,6 +178,7 @@ public class ItemListController implements Initializable {
         // call changeStatus method of the todolistTableManager
         itemListManager.changeStatus("incomplate");
     }
+
     // Load existing data files
     @FXML
     void openMenuClicked(ActionEvent event) {
@@ -160,11 +206,13 @@ public class ItemListController implements Initializable {
 
         // call show showIncompleteItems method of the todolistTableManager.
     }
+
     @FXML
     void showAllItemsMenuClicked(ActionEvent event) {
         // call show showAllItems method of the todolistTableManager.
         itemListManager.showAllItems();
     }
+
     @FXML
     void saveTaskMenuClicked(ActionEvent event) {
 
@@ -183,14 +231,30 @@ public class ItemListController implements Initializable {
         // call the method delete of the todolistTaskManager
 
     }
+
     @FXML
     void ClearClicked(ActionEvent event) {
 
     }
+
     @FXML
-    void duedateSlectClicked(ActionEvent event) {
+    void dueDateSelectClicked(ActionEvent event) {
+        LocalDate localDate = dueDatePicker.getValue();
+
+        LocalDate today = LocalDate.now();
+        LocalDate yesterday = today.minusDays(1);
+
+        try {
+            if (localDate != null && localDate.isAfter(yesterday)) {
+                dueDate = localDate.toString();
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+
+        }
 
     }
+
     @FXML
     void mouseClicked(MouseEvent event) {
 
