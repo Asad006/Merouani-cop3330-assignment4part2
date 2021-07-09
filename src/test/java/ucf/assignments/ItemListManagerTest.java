@@ -142,6 +142,41 @@ class ItemListManagerTest {
         assertEquals(expectedData, actualData);
 
     }
+    @Test
+    void showIncompleteItems() {
+        // Given
+        // create  an object TodoListTableManager
+        // expectedData observable  collection
+        // add objects with complete  and incomplete item tags.
+        // create actualData Observable Collection with only incomplete.
+
+        // when...
+        // call method showIncompleteItems to add new TodoTask object
+
+        // then
+        //assertEquals(expectedData,actualData);
+        ItemListManager itemListManager = new ItemListManager();
+
+        ObservableList<Item> expectedData = FXCollections.observableArrayList();
+        ObservableList<Item> actualData = FXCollections.observableArrayList();
+
+        Item item = new Item("test 1", "description test 1", "2021-07-11", "Complete");
+        Item item1 = new Item("test 2", "description test 2", "2021-07-12", "Incomplete");
+        Item item2 = new Item("test 3", "description test 3", "2021-07-13", "Incomplete");
+
+        actualData.add(item);
+        actualData.add(item1);
+        actualData.add(item2);
+
+        expectedData.add(item1);
+        expectedData.add(item2);
+
+        actualData = itemListManager.showIncompleteItems(actualData);
+
+        assertEquals(expectedData, actualData);
+
+
+    }
 /*
     @Test
     void sort() {

@@ -224,7 +224,7 @@ public class ItemListController implements Initializable {
 
         dataIncomplete = FXCollections.observableArrayList(itemsData);
 
-        dataIncomplete = itemListManager.showCompleteItems(dataIncomplete);
+        dataIncomplete = itemListManager.showIncompleteItems(dataIncomplete);
         itemTableView.setItems(dataIncomplete);
     }
 
