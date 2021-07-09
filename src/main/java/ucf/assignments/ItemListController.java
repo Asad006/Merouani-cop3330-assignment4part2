@@ -10,7 +10,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.ComboBoxTableCell;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.util.converter.DefaultStringConverter;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -21,8 +24,8 @@ public class ItemListController implements Initializable {
     private String dueDate = "";
 
     private ObservableList<Item> itemsData = FXCollections.observableArrayList();
-    ObservableList<Item> itemsDataIncomplete= FXCollections.observableArrayList();
-    ObservableList<Item> itemsDataComplete= FXCollections.observableArrayList();
+    ObservableList<Item> dataIncomplete= FXCollections.observableArrayList();
+    ObservableList<Item> dataComplete= FXCollections.observableArrayList();
 
     @FXML
     private TableView<Item> itemTableView;
@@ -59,6 +62,9 @@ public class ItemListController implements Initializable {
 
     @FXML
     private TableColumn Items;
+
+    @FXML
+    private TableColumn statusColumn;
 
     @FXML
     private TableColumn descriptionColumn;
@@ -147,6 +153,15 @@ public class ItemListController implements Initializable {
         // Set the cells todoTasks  table to be editable
         // Call setEditable function to make the title editable.
         // call setEditable function to make description and and due date editable
+        itemTableView.setEditable(true);
+        itemTableView.setPlaceholder(new Label(" No Data To display"));
+
+        descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        dueDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        ObservableList<String> cbValues = FXCollections.observableArrayList("Incomplete", "Complete");
+        statusColumn.setCellFactory(ComboBoxTableCell.forTableColumn(new DefaultStringConverter(), cbValues));
+        itemTableView.getSelectionModel().cellSelectionEnabledProperty().set(true);
 
     }
 
@@ -196,6 +211,10 @@ public class ItemListController implements Initializable {
     @FXML
     void showCompleteMenuClicked(ActionEvent event) {
         // call show showIncompleteItems method of the todolistTableManager.
+        dataComplete = FXCollections.observableArrayList(itemsData);
+        //temTableView.getItems().clear();
+        dataComplete = itemListManager.showCompleteItems(dataComplete);
+        itemTableView.setItems(dataComplete);
 
     }
 

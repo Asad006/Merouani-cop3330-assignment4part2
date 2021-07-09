@@ -4,6 +4,7 @@ package ucf.assignments;
  *  Copyright 2021 Asad merouani
  */
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -50,7 +51,7 @@ public class ItemListManager {
         // Load the new observable collection data to the TableView To display.
     }
 
-    public void showCompleteItems(TableView<Item> taskItemTableView) {
+    public ObservableList<Item>  showCompleteItems(ObservableList<Item>  itemsData) {
         // Get Observable Collection data of the list.
         // Create an object of the class ToDoTask.
         // Set the object status to complete.
@@ -59,6 +60,15 @@ public class ItemListManager {
         // Get all the elements of the Observable collection that has a complete status.
         // Assign the completed items to the New observable collection data.
         // Load the new observable collection data to the TableView To display.
+        // call show showIncompleteItems method of the todolistTableManager.
+        ObservableList<Item> complete = FXCollections.observableArrayList();;
+        for (int i = 0; i < itemsData.size(); i++) {
+            String status =itemsData.get(i).getStatus();
+            if (status.equals("Complete")){
+                complete.add(itemsData.get(i));
+            }
+        }
+        return complete;
     }
 
     public void newApp() {
