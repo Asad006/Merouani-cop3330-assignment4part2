@@ -74,6 +74,41 @@ class ItemListManagerTest {
         assertEquals(expectedData,actualData);
 
     }
+
+    @Test
+    void clear() {
+        // Given
+        // create  an object TodoListTableManager
+        // expectedData observable  collection object
+        // add test objects to expectedData
+        // create actualData Observable Collection with the deleted object
+
+        // when...
+        // get the data be deleted.
+        // call method  clear
+
+        // then
+        //assertEquals(expectedData,actualData);
+        ItemListManager itemListManager = new ItemListManager();
+        String nameItem = "Shop";
+        String description = " make sure you do the groceries";
+        String dueDate =" 2021-07-12";
+
+
+
+        ObservableList<Item> expectedData = FXCollections.observableArrayList();
+        ObservableList<Item> actualData = FXCollections.observableArrayList();
+
+        Item item = new Item(nameItem,description,dueDate);
+        actualData.add(item);
+
+
+        itemListManager.clear(actualData);
+
+        assertEquals(expectedData,actualData);
+
+
+    }
 /*
     @Test
     void sort() {

@@ -20,7 +20,7 @@ public class ItemListController implements Initializable {
     private final ItemListManager itemListManager = new ItemListManager();
     private String dueDate = "";
 
-    private final ObservableList<Item> itemsData = FXCollections.observableArrayList();
+    private ObservableList<Item> itemsData = FXCollections.observableArrayList();
     ObservableList<Item> itemsDataIncomplete= FXCollections.observableArrayList();
     ObservableList<Item> itemsDataComplete= FXCollections.observableArrayList();
 
@@ -226,8 +226,10 @@ public class ItemListController implements Initializable {
     }
 
     @FXML
-    void ClearClicked(ActionEvent event) {
-
+    void clearClicked(ActionEvent event) {
+    // call the itemsListManger object to clear the Dat
+        itemsData = itemListManager.clear(itemsData);
+        itemTableView.setItems(itemsData);
     }
 
     @FXML

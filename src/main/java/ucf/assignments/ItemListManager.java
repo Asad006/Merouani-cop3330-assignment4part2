@@ -107,4 +107,12 @@ public class ItemListManager {
         itemsData.remove(index);
         return itemsData;
     }
+
+    public ObservableList<Item> clear(ObservableList<Item> itemsData) {
+        for (int i = 0; i < itemsData.size(); i++) {
+            itemsData.remove(i);
+        }
+
+        return itemsData;
+    }
 }
