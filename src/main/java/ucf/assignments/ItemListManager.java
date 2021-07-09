@@ -12,12 +12,6 @@ import javafx.scene.control.TableView;
 public class ItemListManager {
     ItemListApp application = new ItemListApp();
 
-    public void add1(String text, TableColumn<String, String> toDoListTable) {
-        // get the column of the tableView
-        // add the new value to the column the tableview by calling the get items methods of the Observable Collection
-
-
-    }
     public void sort(TableView table, TableColumn column){
         // call the built in sort method of the Observable Object.
 
@@ -43,13 +37,6 @@ public class ItemListManager {
         // set The object of the type ToDoTask with the new entered value
         // add the new value to the table view data
         // refresh the Tableview rendering
-    }
-
-    public void delete(TableView<Item> toDoTaskTableView) {
-        // Get Observable Collection data of the list
-        // get the selected cell from observable collection
-        // create object of the todoTask
-        // call remove function of the observable collection
     }
 
     public void showIncompleteItems(TableView<Item> taskItemTableView) {
@@ -110,5 +97,15 @@ public class ItemListManager {
 
     public void add(ObservableList<Item> itemsData, String itemName, String fieldDescription, String dueDate) {
         itemsData.add(new Item(itemName, fieldDescription, dueDate));
+    }
+
+    public void delete(TableView<Item> itemTableView, ObservableList<Item> itemsData) {
+        // Get Observable Collection data of the list
+        // get the selected cell from observable collection
+        // create object of the todoTask
+        // call remove function of the observable collection
+
+        Item item  =  itemTableView.getSelectionModel().getSelectedItem();
+        itemTableView.getItems().remove(item);
     }
 }

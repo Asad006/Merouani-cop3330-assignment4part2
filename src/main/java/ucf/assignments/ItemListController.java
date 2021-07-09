@@ -218,15 +218,9 @@ public class ItemListController implements Initializable {
     }
 
     @FXML
-    public void deleteTaskClicked(ActionEvent actionEvent) {
-        // call the method delete of the todolistTaskManager
-
-    }
-
-    @FXML
     public void deleteItemClicked(ActionEvent actionEvent) {
         // call the method delete of the todolistTaskManager
-
+        itemListManager.delete( itemTableView, itemsData);
     }
 
     @FXML
