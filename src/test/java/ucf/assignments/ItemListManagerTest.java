@@ -188,6 +188,27 @@ class ItemListManagerTest {
 
         // then
         //assertEquals(expectedData,actualData);
+        ItemListManager itemListManager = new ItemListManager();
+
+        ObservableList<Item> expectedData = FXCollections.observableArrayList();
+        ObservableList<Item> actualData = FXCollections.observableArrayList();
+
+        Item item = new Item("test 1", "description test 1", "2021-07-11", "Complete");
+        Item item1 = new Item("test 2", "description test 2", "2021-07-12", "Incomplete");
+        Item item2 = new Item("test 3", "description test 3", "2021-07-13", "Incomplete");
+
+        actualData.add(item);
+        actualData.add(item1);
+        actualData.add(item2);
+
+        expectedData.add(item);
+        expectedData.add(item1);
+        expectedData.add(item2);
+
+        actualData = itemListManager.showAllItems(actualData);
+
+        assertEquals(expectedData, actualData);
+
     }
 /*
     @Test
