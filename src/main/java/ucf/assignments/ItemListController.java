@@ -21,8 +21,8 @@ public class ItemListController implements Initializable {
     private String dueDate = "";
 
     private final ObservableList<Item> itemsData = FXCollections.observableArrayList();
-    ObservableList<Item> itemsDataIncomplete= FXCollections.observableArrayList();;
-    ObservableList<Item> itemsDataComplete= FXCollections.observableArrayList();;
+    ObservableList<Item> itemsDataIncomplete= FXCollections.observableArrayList();
+    ObservableList<Item> itemsDataComplete= FXCollections.observableArrayList();
 
     @FXML
     private TableView<Item> itemTableView;

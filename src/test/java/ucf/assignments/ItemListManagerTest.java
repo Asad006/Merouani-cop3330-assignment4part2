@@ -1,5 +1,7 @@
 package ucf.assignments;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,15 +14,31 @@ class ItemListManagerTest {
         // create  an object TodoListTableManager
         // expectedData observable  collection object set to empty
         // create actualData Observable Collection
-
         // when...
         // call method ADD to add new TodoTask object
 
         // then
         //assertEquals(expectedData,actualData);
 
-    }
+        ItemListManager itemListManager = new ItemListManager();
+        String nameItem = "Shop";
+        String description = " make sure you do the groceries";
+        String dueDate =" 2021-07-12";
 
+        ObservableList<Item> expectedData = FXCollections.observableArrayList();
+        Item item = new Item(nameItem,description,dueDate);
+        expectedData.add(item);
+
+        ObservableList<Item> actualData = FXCollections.observableArrayList();
+        itemListManager.add(actualData,nameItem,description,dueDate);
+
+        assertEquals(expectedData.get(0).getItemName(),actualData.get(0).getItemName());
+        assertEquals(expectedData.get(0).getDescription(),actualData.get(0).getDescription());
+        assertEquals(expectedData.get(0).getDueDate(),actualData.get(0).getDueDate());
+        assertEquals(expectedData.get(0).getStatus(),actualData.get(0).getStatus());
+
+    }
+/*
     @Test
     void sort() {
         // Given
@@ -128,5 +146,5 @@ class ItemListManagerTest {
         // then
         //assertEquals(expectedData,actualData);
 
-    }
+    }*/
 }
