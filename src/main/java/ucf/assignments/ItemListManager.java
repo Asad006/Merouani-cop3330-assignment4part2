@@ -9,8 +9,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 
-public class TodolistTableManager {
-    ToDoListApp application = new ToDoListApp();
+public class ItemListManager {
+    ItemListApp application = new ItemListApp();
 
     public void add(String text, TableColumn<String, String> toDoListTable) {
         // get the column of the tableView
@@ -23,7 +23,7 @@ public class TodolistTableManager {
 
     }
 
-    public void save(ObservableList<ToDoTask> taskDataList) {
+    public void save(ObservableList<Item> taskDataList) {
         // open json file
         // the data of the tableView
         // Do serialization of the object to json Object
@@ -45,14 +45,14 @@ public class TodolistTableManager {
         // refresh the Tableview rendering
     }
 
-    public void delete(TableView<ToDoTask> toDoTaskTableView) {
+    public void delete(TableView<Item> toDoTaskTableView) {
         // Get Observable Collection data of the list
         // get the selected cell from observable collection
         // create object of the todoTask
         // call remove function of the observable collection
     }
 
-    public void showIncompleteItems(TableView<TaskItem> taskItemTableView) {
+    public void showIncompleteItems(TableView<Item> taskItemTableView) {
         // Get Observable Collection data of the list.
         // Create an object of the class ToDoTask.
         // Set the object status to complete.
@@ -63,7 +63,7 @@ public class TodolistTableManager {
         // Load the new observable collection data to the TableView To display.
     }
 
-    public void showCompleteItems(TableView<TaskItem> taskItemTableView) {
+    public void showCompleteItems(TableView<Item> taskItemTableView) {
         // Get Observable Collection data of the list.
         // Create an object of the class ToDoTask.
         // Set the object status to complete.

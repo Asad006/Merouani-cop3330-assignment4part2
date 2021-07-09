@@ -14,17 +14,15 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ToDoListController implements Initializable {
-    TodolistTableManager todolistTableManager = new TodolistTableManager();
-    ObservableList<TaskItem> todoItemsData;
-    ObservableList<ToDoTask> taskDataList;
-    ObservableList<TaskItem> todoItemsDataIncomplete;
-    ObservableList<TaskItem> todoItemsDataComplete;
-    @FXML
-    private TableView<ToDoTask> toDoTaskTableView;
+public class ItemListController implements Initializable {
+    ItemListManager itemListManager = new ItemListManager();
+
+    ObservableList<Item> itemsData;
+    ObservableList<Item> itemsDataIncomplete;
+    ObservableList<Item> itemsDataComplete;
 
     @FXML
-    private TableView<TaskItem> taskItemTableView;
+    private TableView<Item> itemTableView;
 
     @FXML
     private MenuBar menuBar;
@@ -84,16 +82,6 @@ public class ToDoListController implements Initializable {
     private TextField dueDate;
 
     @FXML
-    void AddTaskButtonClicked(ActionEvent event) {
-
-        // get the the textField content
-        // call add method of TodolistManager to set the the new content into the todolist.
-        // clear the textField
-        //final ObservableList<ToDoTask> data = TasksTableView.getItems();
-
-    }
-
-    @FXML
     public void addItemClicked(ActionEvent actionEvent) {
 
         // get the the textField content
@@ -139,7 +127,7 @@ public class ToDoListController implements Initializable {
     @FXML
     void setStatusIncompleteClicked(ActionEvent event) {
         // call changeStatus method of the todolistTableManager
-        todolistTableManager.changeStatus("incomplate");
+        itemListManager.changeStatus("incomplate");
     }
     // Load existing data files
     @FXML
@@ -171,7 +159,7 @@ public class ToDoListController implements Initializable {
     @FXML
     void showAllItemsMenuClicked(ActionEvent event) {
         // call show showAllItems method of the todolistTableManager.
-        todolistTableManager.showAllItems();
+        itemListManager.showAllItems();
     }
     @FXML
     void saveTaskMenuClicked(ActionEvent event) {

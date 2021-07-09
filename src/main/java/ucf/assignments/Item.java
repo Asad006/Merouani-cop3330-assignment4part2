@@ -5,7 +5,7 @@ package ucf.assignments;
  */
 
 
-public class TaskItem {
+public class Item {
     //  class instance variable
     //  itemName : SimpleStringProperty
     //  description : SimpleStringProperty

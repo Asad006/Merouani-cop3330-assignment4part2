@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class ToDoListApp extends Application {
+public class ItemListApp extends Application {
 
     public static void main(String[] args) {
         launch(args);

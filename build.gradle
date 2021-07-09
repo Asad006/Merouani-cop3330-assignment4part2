@@ -34,4 +34,4 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-mainClassName = 'ucf.assignments.ToDoListApp'
+mainClassName = 'ucf.assignments.ItemListApp'
