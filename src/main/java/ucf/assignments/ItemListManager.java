@@ -40,7 +40,7 @@ public class ItemListManager {
         // refresh the Tableview rendering
     }
 
-    public void showIncompleteItems(TableView<Item> taskItemTableView) {
+    public ObservableList<Item> showIncompleteItems(ObservableList<Item>  itemsData) {
         // Get Observable Collection data of the list.
         // Create an object of the class ToDoTask.
         // Set the object status to complete.
@@ -49,6 +49,14 @@ public class ItemListManager {
         // Get all the elements of the Observable collection that has a incomplete status.
         // Assign the incomplete items to the New observable collection data.
         // Load the new observable collection data to the TableView To display.
+        ObservableList<Item> incomplete = FXCollections.observableArrayList();;
+        for (int i = 0; i < itemsData.size(); i++) {
+            String status =itemsData.get(i).getStatus();
+            if (status.equals("Incomplete")){
+                incomplete.add(itemsData.get(i));
+            }
+        }
+        return incomplete;
     }
 
     public ObservableList<Item>  showCompleteItems(ObservableList<Item>  itemsData) {

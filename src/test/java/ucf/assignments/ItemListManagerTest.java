@@ -26,21 +26,22 @@ class ItemListManagerTest {
         ItemListManager itemListManager = new ItemListManager();
         String nameItem = "Shop";
         String description = " make sure you do the groceries";
-        String dueDate =" 2021-07-12";
+        String dueDate = " 2021-07-12";
 
         ObservableList<Item> expectedData = FXCollections.observableArrayList();
-        Item item = new Item(nameItem,description,dueDate);
+        Item item = new Item(nameItem, description, dueDate);
         expectedData.add(item);
 
         ObservableList<Item> actualData = FXCollections.observableArrayList();
-        itemListManager.add(actualData,nameItem,description,dueDate);
+        itemListManager.add(actualData, nameItem, description, dueDate);
 
-        assertEquals(expectedData.get(0).getItemName(),actualData.get(0).getItemName());
-        assertEquals(expectedData.get(0).getDescription(),actualData.get(0).getDescription());
-        assertEquals(expectedData.get(0).getDueDate(),actualData.get(0).getDueDate());
-        assertEquals(expectedData.get(0).getStatus(),actualData.get(0).getStatus());
+        assertEquals(expectedData.get(0).getItemName(), actualData.get(0).getItemName());
+        assertEquals(expectedData.get(0).getDescription(), actualData.get(0).getDescription());
+        assertEquals(expectedData.get(0).getDueDate(), actualData.get(0).getDueDate());
+        assertEquals(expectedData.get(0).getStatus(), actualData.get(0).getStatus());
 
     }
+
     @Test
     void delete() {
         // Given
@@ -58,20 +59,19 @@ class ItemListManagerTest {
         ItemListManager itemListManager = new ItemListManager();
         String nameItem = "Shop";
         String description = " make sure you do the groceries";
-        String dueDate =" 2021-07-12";
-
+        String dueDate = " 2021-07-12";
 
 
         ObservableList<Item> expectedData = FXCollections.observableArrayList();
         ObservableList<Item> actualData = FXCollections.observableArrayList();
 
-        Item item = new Item(nameItem,description,dueDate);
+        Item item = new Item(nameItem, description, dueDate);
         actualData.add(item);
-        int index=0;
+        int index = 0;
 
-        itemListManager.delete(actualData,index);
+        itemListManager.delete(actualData, index);
 
-        assertEquals(expectedData,actualData);
+        assertEquals(expectedData, actualData);
 
     }
 
@@ -91,22 +91,55 @@ class ItemListManagerTest {
         //assertEquals(expectedData,actualData);
         ItemListManager itemListManager = new ItemListManager();
         String nameItem = "Shop";
-        String description = " make sure you do the groceries";
-        String dueDate =" 2021-07-12";
-
+        String description = "make sure you do the groceries";
+        String dueDate = "2021-07-12";
 
 
         ObservableList<Item> expectedData = FXCollections.observableArrayList();
         ObservableList<Item> actualData = FXCollections.observableArrayList();
 
-        Item item = new Item(nameItem,description,dueDate);
+        Item item = new Item(nameItem, description, dueDate);
         actualData.add(item);
 
 
         itemListManager.clear(actualData);
 
-        assertEquals(expectedData,actualData);
+        assertEquals(expectedData, actualData);
 
+
+    }
+
+    @Test
+    void showCompleteItems() {
+        // Given
+        // create  an object TodoListTableManager
+        // expectedData observable  collection
+        // add objects with complete  and incomplete item tags.
+        // create actualData Observable Collection with only incomplete.
+
+        // when...
+        // call method showIncompleteItems to add new TodoTask object
+
+        // then
+        //assertEquals(expectedData,actualData);
+        ItemListManager itemListManager = new ItemListManager();
+
+        ObservableList<Item> expectedData = FXCollections.observableArrayList();
+        ObservableList<Item> actualData = FXCollections.observableArrayList();
+
+        Item item = new Item("test 1", "description test 1", "2021-07-11", "Complete");
+        Item item1 = new Item("test 2", "description test 2", "2021-07-12", "Incomplete");
+        Item item2 = new Item("test 3", "description test 3", "2021-07-13", "Incomplete");
+
+        actualData.add(item);
+        actualData.add(item1);
+        actualData.add(item2);
+
+        expectedData.add(item);
+
+        actualData = itemListManager.showCompleteItems(actualData);
+
+        assertEquals(expectedData, actualData);
 
     }
 /*

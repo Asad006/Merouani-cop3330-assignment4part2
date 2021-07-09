@@ -212,7 +212,7 @@ public class ItemListController implements Initializable {
     void showCompleteMenuClicked(ActionEvent event) {
         // call show showIncompleteItems method of the todolistTableManager.
         dataComplete = FXCollections.observableArrayList(itemsData);
-        //temTableView.getItems().clear();
+
         dataComplete = itemListManager.showCompleteItems(dataComplete);
         itemTableView.setItems(dataComplete);
 
@@ -221,6 +221,11 @@ public class ItemListController implements Initializable {
     @FXML
     void showIncompleteMenuClicked(ActionEvent event) {
         // call show showIncompleteItems method of the todolistTableManager.
+
+        dataIncomplete = FXCollections.observableArrayList(itemsData);
+
+        dataIncomplete = itemListManager.showCompleteItems(dataIncomplete);
+        itemTableView.setItems(dataIncomplete);
     }
 
     @FXML
