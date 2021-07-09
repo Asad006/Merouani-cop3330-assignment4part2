@@ -79,6 +79,11 @@ public class ItemListManager {
         return complete;
     }
 
+    public ObservableList<Item> showAllItems(ObservableList<Item>  itemsData) {
+        // Get Observable Collection data of the list.
+        // Load the  observable collection data to the TableView To display.
+        return itemsData;
+    }
     public void newApp() {
         // this allows the user to load multiple file in different application.
         // creates object from the TodoListApp.
@@ -108,10 +113,7 @@ public class ItemListManager {
 
     }
 
-    public void showAllItems() {
-        // Get Observable Collection data of the list.
-        // Load the  observable collection data to the TableView To display.
-    }
+
 
     public void add(ObservableList<Item> itemsData, String itemName, String fieldDescription, String dueDate) {
         itemsData.add(new Item(itemName, fieldDescription, dueDate));

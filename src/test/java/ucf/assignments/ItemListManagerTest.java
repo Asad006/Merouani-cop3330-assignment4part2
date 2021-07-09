@@ -175,7 +175,19 @@ class ItemListManagerTest {
 
         assertEquals(expectedData, actualData);
 
+    }
+    @Test
+    void showAllItems() {
+        // Given
+        // create  an object TodoListTableManager
+        // expectedData observable  collection
+        // create identical actualData Observable Collection with expected.
 
+        // when...
+        // call method changeStatus  to change expectedData
+
+        // then
+        //assertEquals(expectedData,actualData);
     }
 /*
     @Test
@@ -209,66 +221,6 @@ class ItemListManagerTest {
 
 
 
-    @Test
-    void showIncompleteItems() {
-        // Given
-        // create  an object TodoListTableManager
-        // expectedData observable  collection
-        // add objects with complete  and incomplete item tags.
-        // create actualData Observable Collection with only incomplete.
-
-        // when...
-        // call method showIncompleteItems to add new TodoTask object
-
-        // then
-        //assertEquals(expectedData,actualData);
-
-    }
-
-    @Test
-    void showCompleteItems() {
-        // Given
-        // create  an object TodoListTableManager
-        // expectedData observable  collection
-        // add objects with complete  and incomplete item tags.
-        // create actualData Observable Collection with only incomplete.
-
-        // when...
-        // call method showIncompleteItems to add new TodoTask object
-
-        // then
-        //assertEquals(expectedData,actualData);
-
-    }
-
-    @Test
-    void changeStatus() {
-        // Given
-        // create  an object TodoListTableManager
-        // expectedData observable  collection
-        // add object incomplete item tags.
-        // create identical actualData Observable Collection with complete status.
-
-        // when...
-        // call method changeStatus  to change expectedData
-
-        // then
-        //assertEquals(expectedData,actualData);
-
-    }
-
-    @Test
-    void showAllItems() {
-        // Given
-        // create  an object TodoListTableManager
-        // expectedData observable  collection
-        // create identical actualData Observable Collection with expected.
-
-        // when...
-        // call method changeStatus  to change expectedData
-
-        // then
-        //assertEquals(expectedData,actualData);
 
     }*/
 }

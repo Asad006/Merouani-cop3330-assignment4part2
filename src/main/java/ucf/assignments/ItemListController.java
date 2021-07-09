@@ -231,7 +231,7 @@ public class ItemListController implements Initializable {
     @FXML
     void showAllItemsMenuClicked(ActionEvent event) {
         // call show showAllItems method of the todolistTableManager.
-        itemListManager.showAllItems();
+        itemTableView.setItems(itemListManager.showAllItems(itemsData));
     }
 
     @FXML
