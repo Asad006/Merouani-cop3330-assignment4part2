@@ -73,7 +73,7 @@
                           </FXCollections>
                       </items>
                   </TableView>
-                  <TextField fx:id="itemName" layoutX="788.0" layoutY="72.0" prefHeight="25.0" prefWidth="270.0" promptText="Item name" />
+                  <TextField fx:id="itemNameTextField" layoutX="788.0" layoutY="72.0" prefHeight="25.0" prefWidth="270.0" promptText="Item name" />
                   <Button fx:id="addItem" layoutX="788.0" layoutY="486.0" mnemonicParsing="false" onAction="#addItemClicked" prefHeight="25.0" prefWidth="278.0" text="Add" />
                   <DatePicker fx:id="dueDatePicker" layoutX="790.0" layoutY="451.0" onAction="#dueDateSelectClicked" prefHeight="25.0" prefWidth="270.0" promptText="Select a due date" />
                   <Button fx:id="deleteItem" layoutX="800.0" layoutY="28.0" mnemonicParsing="false" onAction="#deleteItemClicked" prefHeight="25.0" prefWidth="116.0" text="Delete Item" />

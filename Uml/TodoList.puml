@@ -1,0 +1,90 @@
+@startuml
+class TodolistTableManager{
+- application : ToDoListApp
++ sortTasks()
++ delete()
++ add()
++ setTableEditable()
++ displayUncompletedTasks()
++ displayCompletedTasks()
++ save()
++ new()
++ close()
++ open()
+}
+
+class ToDoListController {
+    - todolistTableManager: TodolistTableManager
+    - todoItemsData: ObservableList<TaskItem>
+    - todoItemsData: ObservableList<TaskItem>
+    - taskDataList: ObservableList<ToDoTask>
+    - todoItemsDataIncomplete: ObservableList<TaskItem>
+    - todoItemsDataComplete: ObservableList<TaskItem>
+    - tasksTableView: TableView<ToDoTask>
+    - itemsTableView: TableView<TaskItem>
+    - toDoColumn :TableColumn
+    - items: TableColumn
+    - descriptionColumn:T ableColumn
+    - dueDateColumn: TableColumn
+    - addToDoListText: TextField
+    - addTaskButton: Button
+    - itemName: TextField
+    - description: TextField
+    - addItem: Button
+    - dueDate: TextField
+
+ + initialize()
+ + AddTaskMenuClicked()
+ + saveTaskMenuClicked()
+ + deleteTaskClicked()
+ + addItemButtonClicked()
+ + saveItemMenuClicked()
+ + deleteItemClicked()
+ + showCompleteMenuClicked()
+ + showInCompleteMenuClicked()
+ + newMenuClicked()
+ + openMenuClicked()
+ + closeMenuClicked()
+ + setStatusCompleteClicked()
+ + setStatusIncompleteClicked()
+
+
+
+
+}
+
+class ToDoTask{
+- taskTitle: String
++ ToDoTask()
++ getToDoTitle()
++ setToDoTitle()
+}
+
+class TaskItem{
+    -  itemName : SimpleStringProperty
+    -  description : SimpleStringProperty
+    -  datePattern :String
+    -  dueDate: SimpleDateFormat
+    -  status : SimpleStringProperty
++ TaskItem()
++ getItemName()
++ setItemName(String itemName)
++ public String getDescription()
++ setDescription(String description)
++ getDueDate()
++ getStatus()
++ setStatus()
+
+}
+class ToDoListApp{
+main()
+start()
+}
+
+javafx.Application <|-- ToDoListApp
+ToDoListApp - ToDoListController
+ToDoListController - TaskItem
+ToDoListController - ToDoTask
+ToDoListController *-- TodolistTableManager
+TodolistTableManager *-- ToDoListApp
+@enduml

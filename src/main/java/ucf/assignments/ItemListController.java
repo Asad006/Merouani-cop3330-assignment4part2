@@ -76,7 +76,7 @@ public class ItemListController implements Initializable {
     private TextArea descriptionTextArea;
 
     @FXML
-    private TextField itemName;
+    private TextField itemNameTextField;
 
     @FXML
     private TextField description;
@@ -92,7 +92,7 @@ public class ItemListController implements Initializable {
         // call TodolistManager to set the the new content into the todolist.
         // clear the textField
 
-        String itemNam = itemName.getText();
+        String itemName = itemNameTextField.getText();
         String fieldDescription = descriptionTextArea.getText();
 
         if (fieldDescription.equals("")) {
@@ -105,7 +105,7 @@ public class ItemListController implements Initializable {
                     System.out.println("Pressed OK.");
                 }
             });
-        } else if (itemNam.equals("")) {
+        } else if (itemName.equals("")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Missing information.");
             alert.setHeaderText("");
@@ -127,10 +127,10 @@ public class ItemListController implements Initializable {
                 }
             });
         } else {
-            itemsData.add(new Item(itemNam, fieldDescription, dueDate));
+            itemsData.add(new Item(itemName, fieldDescription, dueDate));
             itemTableView.setItems(itemsData);
 
-            itemName.clear();
+            itemNameTextField.clear();
             descriptionTextArea.clear();
             dueDatePicker.setValue(null);
             dueDate = "";
@@ -165,7 +165,6 @@ public class ItemListController implements Initializable {
     void newMenuClicked(ActionEvent event) {
         // the method new of the todolistTableManager
 
-
     }
 
     @FXML
@@ -196,14 +195,12 @@ public class ItemListController implements Initializable {
 
     @FXML
     void showCompleteMenuClicked(ActionEvent event) {
-
         // call show showIncompleteItems method of the todolistTableManager.
 
     }
 
     @FXML
     void showIncompleteMenuClicked(ActionEvent event) {
-
         // call show showIncompleteItems method of the todolistTableManager.
     }
 
@@ -252,7 +249,6 @@ public class ItemListController implements Initializable {
             e.printStackTrace();
 
         }
-
     }
 
     @FXML

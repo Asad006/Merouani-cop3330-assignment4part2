@@ -12,7 +12,7 @@ import javafx.scene.control.TableView;
 public class ItemListManager {
     ItemListApp application = new ItemListApp();
 
-    public void add(String text, TableColumn<String, String> toDoListTable) {
+    public void add1(String text, TableColumn<String, String> toDoListTable) {
         // get the column of the tableView
         // add the new value to the column the tableview by calling the get items methods of the Observable Collection
 
@@ -106,5 +106,9 @@ public class ItemListManager {
     public void showAllItems() {
         // Get Observable Collection data of the list.
         // Load the  observable collection data to the TableView To display.
+    }
+
+    public void add(ObservableList<Item> itemsData, String itemName, String fieldDescription, String dueDate) {
+        itemsData.add(new Item(itemName, fieldDescription, dueDate));
     }
 }
