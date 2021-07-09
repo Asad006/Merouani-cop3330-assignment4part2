@@ -2,7 +2,10 @@ package ucf.assignments;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
 import org.junit.jupiter.api.Test;
+
+import javax.swing.text.TabableView;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,6 +41,39 @@ class ItemListManagerTest {
         assertEquals(expectedData.get(0).getStatus(),actualData.get(0).getStatus());
 
     }
+    @Test
+    void delete() {
+        // Given
+        // create  an object TodoListTableManager
+        // expectedData observable  collection object
+        // add test objects to expectedData
+        // create actualData Observable Collection with the deleted object
+
+        // when...
+        // get the row to be deleted.
+        // call method deleted  to delete TodoTask object
+
+        // then
+        //assertEquals(expectedData,actualData);
+        ItemListManager itemListManager = new ItemListManager();
+        String nameItem = "Shop";
+        String description = " make sure you do the groceries";
+        String dueDate =" 2021-07-12";
+
+
+
+        ObservableList<Item> expectedData = FXCollections.observableArrayList();
+        ObservableList<Item> actualData = FXCollections.observableArrayList();
+
+        Item item = new Item(nameItem,description,dueDate);
+        actualData.add(item);
+        int index=0;
+
+        itemListManager.delete(actualData,index);
+
+        assertEquals(expectedData,actualData);
+
+    }
 /*
     @Test
     void sort() {
@@ -68,22 +104,7 @@ class ItemListManagerTest {
         //assertEquals(expectedData,actualData);
     }
 
-    @Test
-    void delete() {
-        // Given
-        // create  an object TodoListTableManager
-        // expectedData observable  collection object
-        // add test objects to expectedData
-        // create actualData Observable Collection with the deleted object
 
-        // when...
-        // get the row to be deleted.
-        // call method deleted  to delete TodoTask object
-
-        // then
-        //assertEquals(expectedData,actualData);
-
-    }
 
     @Test
     void showIncompleteItems() {

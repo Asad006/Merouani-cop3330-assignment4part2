@@ -220,7 +220,9 @@ public class ItemListController implements Initializable {
     @FXML
     public void deleteItemClicked(ActionEvent actionEvent) {
         // call the method delete of the todolistTaskManager
-        itemListManager.delete( itemTableView, itemsData);
+
+        int index = itemTableView.getSelectionModel().getSelectedIndex();
+        itemTableView.setItems( itemListManager.delete( itemsData, index));
     }
 
     @FXML

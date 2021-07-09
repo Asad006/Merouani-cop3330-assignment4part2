@@ -99,13 +99,12 @@ public class ItemListManager {
         itemsData.add(new Item(itemName, fieldDescription, dueDate));
     }
 
-    public void delete(TableView<Item> itemTableView, ObservableList<Item> itemsData) {
+    public ObservableList<Item> delete(ObservableList<Item> itemsData,int index) {
         // Get Observable Collection data of the list
         // get the selected cell from observable collection
         // create object of the todoTask
         // call remove function of the observable collection
-
-        Item item  =  itemTableView.getSelectionModel().getSelectedItem();
-        itemTableView.getItems().remove(item);
+        itemsData.remove(index);
+        return itemsData;
     }
 }
