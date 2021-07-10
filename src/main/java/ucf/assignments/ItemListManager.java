@@ -8,6 +8,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import java.io.File;
 
 
 public class ItemListManager {
@@ -18,13 +22,25 @@ public class ItemListManager {
 
     }
 
-    public void save(ObservableList<Item> taskDataList) {
+    public void save(ObservableList<Item> dataList) {
         // open json file
         // the data of the tableView
         // Do serialization of the object to json Object
         // write the data in the file
         // close the file
+        File file = getFileChooser();
 
+    }
+
+    private File getFileChooser() {
+        Stage stage= new Stage();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save File");
+        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json"));
+
+        File file = fileChooser.showSaveDialog(stage);
+
+        return file;
     }
 
 

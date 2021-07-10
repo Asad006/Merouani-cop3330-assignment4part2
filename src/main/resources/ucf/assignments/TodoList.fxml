@@ -39,8 +39,8 @@
 
               <Menu mnemonicParsing="false" text="Save">
                   <items>
-                      <MenuItem fx:id="saveTaskMenu" mnemonicParsing="false" onAction="#saveTaskMenuClicked" text="Save items" />
-                      <MenuItem fx:id="saveItemsMenu" mnemonicParsing="false" onAction="#saveItemsMenuClicked" text="Save Items as " />
+                      <MenuItem fx:id="saveTaskMenu" mnemonicParsing="false" onAction="#saveItemsClicked" text="Save items" />
+                      <MenuItem fx:id="saveItemsMenu" mnemonicParsing="false" onAction="#saveAsClicked" text="Save Items as " />
                   </items>
 
               </Menu>

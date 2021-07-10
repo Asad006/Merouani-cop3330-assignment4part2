@@ -166,7 +166,7 @@ public class ItemListController implements Initializable {
     }
 
     @FXML
-    void saveItemsMenuClicked(ActionEvent event) {
+    void saveAsClicked(ActionEvent event) {
 
         // get The variable of the Observable Collection data of the list
         // get the selected cell from observable collection
@@ -235,10 +235,11 @@ public class ItemListController implements Initializable {
     }
 
     @FXML
-    void saveTaskMenuClicked(ActionEvent event) {
+    void saveItemsClicked(ActionEvent event) {
 
         // Get the Observable data collection of the task list
         // call the save function in the ToDoListManager
+        itemListManager.save(itemsData);
     }
 
     @FXML
