@@ -15,10 +15,14 @@ import javafx.stage.Stage;
 import org.hildan.fxgson.FxGson;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 
 
 public class ItemListManager {
@@ -160,6 +164,27 @@ public class ItemListManager {
         return dateFile;
     }
 
+    private ObservableList<Item> processFile(String path) {
+        ObservableList<Item> dataList = FXCollections.observableArrayList();
+        Item[] itemDataArray ;
+
+        Gson gson = FxGson.coreBuilder().setPrettyPrinting().disableHtmlEscaping().create();;
+        JSONParser jsonParser = new JSONParser();
+
+        try {
+
+            JSONArray jsonArray = (JSONArray) jsonParser.parse(new FileReader(path));
+
+            String userJson= jsonArray.toJSONString();
+            itemDataArray =gson.fromJson(userJson, Item[].class);
+            dataList.addAll(Arrays.asList(itemDataArray));
+
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+
+        return dataList;
+    }
 
 
     public void close() {
