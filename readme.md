@@ -12,6 +12,9 @@ To open a file click on the file located in the menuBar at the top of the applic
 #### Clear all Items
 #### Display
 #####Display completed Items
+
 #####Display Incomplete Items
+
 #####Display all Items
+
 #### Sort Items
