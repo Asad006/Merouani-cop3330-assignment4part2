@@ -23,11 +23,11 @@ To clear the table from items,  clicked on *Clear Table* button on top right of 
 #### Display
 The display options are located on the Bar Menu *Display*. Once display is clicked a menu will pop up containing tree 
 options: display completed Items, display Incomplete Items,display all Items.
-#####Display completed Items
+**Display completed Items**:
 Displays on the table only the completed items in the list.
-#####Display Incomplete Items
+**Display Incomplete Items**:
 Displays on the table only the Incomplete items in the list.
-#####Display all Items
+**Display all Items**:
 Displays on the table all the items (the completed and the incomplete  items) in the list.
 #### Sort Items
 To sort the Items lexicographically click on *Items* header of the column. The first click will do ascending sorting, 
