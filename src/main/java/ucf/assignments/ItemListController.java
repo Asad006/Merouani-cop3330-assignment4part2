@@ -73,6 +73,9 @@ public class ItemListController implements Initializable {
     private TableColumn dueDateColumn;
 
     @FXML
+    private TextArea previewDescription;
+
+    @FXML
     private TextField addToDoListText;
 
     @FXML
@@ -140,7 +143,6 @@ public class ItemListController implements Initializable {
             descriptionTextArea.clear();
             dueDatePicker.setValue(null);
             dueDate = "";
-
         }
 
     }
@@ -180,24 +182,15 @@ public class ItemListController implements Initializable {
     void newMenuClicked(ActionEvent event) {
         // the method new of the todolistTableManager
 
-    }
 
-    @FXML
-    void setStatusCompleteClicked(ActionEvent event) {
-        // call changeStatus method of the todolistTableManager
-    }
-
-    @FXML
-    void setStatusIncompleteClicked(ActionEvent event) {
-        // call changeStatus method of the todolistTableManager
-        itemListManager.changeStatus("incomplate");
     }
 
     // Load existing data files
     @FXML
     void openMenuClicked(ActionEvent event) {
         // the method open of the todolistTableManager
-        itemTableView.setItems(itemListManager.open());
+        itemsData = itemListManager.open();
+        itemTableView.setItems(itemsData);
     }
 
 
@@ -276,7 +269,12 @@ public class ItemListController implements Initializable {
 
     @FXML
     void mouseClicked(MouseEvent event) {
+        int index = 0;
+        index = itemTableView.getSelectionModel().getSelectedIndex();
+        System.out.println(index);
+        System.out.println(index);
 
+        previewDescription.setText(itemsData.get(index).getDescription());
     }
 
 }

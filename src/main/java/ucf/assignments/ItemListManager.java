@@ -186,21 +186,11 @@ public class ItemListManager {
         return dataList;
     }
 
-
     public void close() {
         // get the instance of the current application from main
         // terminate the platform application
 
     }
-
-    public void changeStatus(String status) {
-        // get the items Tableview
-        // get the status row
-        // set the textField of the cell to the message in status
-
-    }
-
-
 
     public void add(ObservableList<Item> itemsData, String itemName, String fieldDescription, String dueDate) {
         itemsData.add(new Item(itemName, fieldDescription, dueDate));
