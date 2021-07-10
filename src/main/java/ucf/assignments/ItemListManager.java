@@ -4,18 +4,26 @@ package ucf.assignments;
  *  Copyright 2021 Asad merouani
  */
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.hildan.fxgson.FxGson;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 
 public class ItemListManager {
     ItemListApp application = new ItemListApp();
+
 
     public void sort(TableView table, TableColumn column){
         // call the built in sort method of the Observable Object.
@@ -30,11 +38,48 @@ public class ItemListManager {
         // close the file
         File file = getFileChooser();
 
+        saveInJsonFile(file, dataList);
+
+    }
+
+    private void saveInJsonFile(File file, ObservableList<Item>  dataList) {
+        Gson gson = FxGson.coreBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+        JsonArray jArray = new JsonArray();
+
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+        if (file != null) {
+            try {
+                String path = file.getPath();
+
+                FileWriter file1 = new FileWriter(path+".json");
+
+                file1.write("[");
+
+                for (int i = 0; i < dataList.size(); i++) {
+                    file1.write(gson.toJson(dataList.get(i)));
+
+                    if (i< dataList.size()-1) {
+                        file1.write(",");
+                    }
+
+                }
+
+
+                file1.write("]");
+                file1.flush();
+                file1.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private File getFileChooser() {
         Stage stage= new Stage();
         FileChooser fileChooser = new FileChooser();
+
         fileChooser.setTitle("Save File");
         fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json"));
 
