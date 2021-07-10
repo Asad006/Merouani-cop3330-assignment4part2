@@ -197,7 +197,7 @@ public class ItemListController implements Initializable {
     @FXML
     void openMenuClicked(ActionEvent event) {
         // the method open of the todolistTableManager
-
+        itemTableView.setItems(itemListManager.open());
     }
 
 
