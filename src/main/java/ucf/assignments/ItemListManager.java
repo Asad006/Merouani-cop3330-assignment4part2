@@ -45,7 +45,7 @@ public class ItemListManager {
 
     }
 
-    private void saveInJsonFile(String path, ObservableList<Item>  dataList) {
+    public void saveInJsonFile(String path, ObservableList<Item>  dataList) {
         Gson gson = FxGson.coreBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
         if (!path.equals("")) {
