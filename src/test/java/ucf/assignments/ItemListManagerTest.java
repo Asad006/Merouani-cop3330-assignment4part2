@@ -94,7 +94,6 @@ class ItemListManagerTest {
         String description = "make sure you do the groceries";
         String dueDate = "2021-07-12";
 
-
         ObservableList<Item> expectedData = FXCollections.observableArrayList();
         ObservableList<Item> actualData = FXCollections.observableArrayList();
 

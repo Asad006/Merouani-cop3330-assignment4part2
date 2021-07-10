@@ -1,5 +1,5 @@
 @startuml
-class TodolistTableManager{
+class ItemListManager{
 - application : ToDoListApp
 + sortTasks()
 + delete()
@@ -13,78 +13,63 @@ class TodolistTableManager{
 + open()
 }
 
-class ToDoListController {
+class ItemListController {
     - todolistTableManager: TodolistTableManager
-    - todoItemsData: ObservableList<TaskItem>
-    - todoItemsData: ObservableList<TaskItem>
-    - taskDataList: ObservableList<ToDoTask>
-    - todoItemsDataIncomplete: ObservableList<TaskItem>
-    - todoItemsDataComplete: ObservableList<TaskItem>
-    - tasksTableView: TableView<ToDoTask>
-    - itemsTableView: TableView<TaskItem>
+    - itemsDataList: ObservableList<Item>
+    - itemsDataIncomplete: ObservableList<Item>
+    - itemsDataComplete: ObservableList<Item>
+    - itemsTableView: TableView<Item>
     - toDoColumn :TableColumn
     - items: TableColumn
     - descriptionColumn:T ableColumn
     - dueDateColumn: TableColumn
-    - addToDoListText: TextField
-    - addTaskButton: Button
     - itemName: TextField
     - description: TextField
     - addItem: Button
     - dueDate: TextField
 
- + initialize()
- + AddTaskMenuClicked()
- + saveTaskMenuClicked()
- + deleteTaskClicked()
- + addItemButtonClicked()
- + saveItemMenuClicked()
- + deleteItemClicked()
- + showCompleteMenuClicked()
- + showInCompleteMenuClicked()
- + newMenuClicked()
- + openMenuClicked()
- + closeMenuClicked()
- + setStatusCompleteClicked()
- + setStatusIncompleteClicked()
+     + initialize()
+     + addItemButtonClicked()
+     + saveItemMenuClicked()
+     + deleteItemClicked()
+     + showCompleteMenuClicked()
+     + showInCompleteMenuClicked()
+     + newMenuClicked()
+     + openMenuClicked()
+     + closeMenuClicked()
+     + dueDateSelectClicked()
+     + mouseClicked()
 
 
 
 
 }
 
-class ToDoTask{
-- taskTitle: String
-+ ToDoTask()
-+ getToDoTitle()
-+ setToDoTitle()
-}
-
-class TaskItem{
+class Item{
     -  itemName : SimpleStringProperty
     -  description : SimpleStringProperty
     -  datePattern :String
     -  dueDate: SimpleDateFormat
     -  status : SimpleStringProperty
-+ TaskItem()
-+ getItemName()
-+ setItemName(String itemName)
-+ public String getDescription()
-+ setDescription(String description)
-+ getDueDate()
-+ getStatus()
-+ setStatus()
+    + TaskItem()
+    + getItemName()
+    + setItemName(String itemName)
+    + public String getDescription()
+    + setDescription(String description)
+    + getDueDate()
+    + getStatus()
+    + setStatus()
 
 }
-class ToDoListApp{
-main()
-start()
+
+class ItemListApp{
+    main()
+    start()
 }
 
-javafx.Application <|-- ToDoListApp
-ToDoListApp - ToDoListController
-ToDoListController - TaskItem
-ToDoListController - ToDoTask
-ToDoListController *-- TodolistTableManager
-TodolistTableManager *-- ToDoListApp
+javafx.Application <|-- ItemListApp
+ItemListApp-ItemListController
+ItemListController - Item
+ItemListController *-- ItemListManager
+
 @enduml
