@@ -55,15 +55,15 @@
                             <cellValueFactory><PropertyValueFactory property="itemName" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="descriptionColumn" maxWidth="1.7976931348623157E308" prefWidth="144.0" resizable="false" text="Description">
+                        <TableColumn fx:id="descriptionColumn" maxWidth="1.7976931348623157E308" prefWidth="450.0" resizable="false" text="Description">
                          <cellValueFactory><PropertyValueFactory property="description" />
                          </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="dueDateColumn" prefWidth="138.0" text="Due Date">
+                        <TableColumn fx:id="dueDateColumn" prefWidth="101.0" text="Due Date">
                          <cellValueFactory><PropertyValueFactory property="dueDate" />
                          </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="statusColumn" prefWidth="384.0" text="Status">
+                        <TableColumn fx:id="statusColumn" prefWidth="115.0" text="Status">
                             <cellValueFactory><PropertyValueFactory property="status" />
                             </cellValueFactory>
                      </TableColumn>
@@ -79,7 +79,7 @@
                   <Button fx:id="deleteItem" layoutX="800.0" layoutY="28.0" mnemonicParsing="false" onAction="#deleteItemClicked" prefHeight="25.0" prefWidth="116.0" text="Delete Item" />
                   <Button layoutX="925.0" layoutY="28.0" mnemonicParsing="false" onAction="#clearClicked" prefHeight="25.0" prefWidth="116.0" text="Clear Table" />
             <TextArea fx:id="descriptionTextArea" layoutX="790.0" layoutY="104.0" prefHeight="337.0" prefWidth="264.0" wrapText="true" />
-            <TextArea fx:id="previewDescription" editable="false" layoutX="9.0" layoutY="486.0" prefHeight="200.0" prefWidth="765.0" promptText="Description preview" wrapText="true">
+            <TextArea fx:id="previewDescription" editable="false" layoutX="9.0" layoutY="486.0" onKeyPressed="#keyBordPressedDescription" onMouseClicked="#descriptionPreviewMouseClicked" prefHeight="200.0" prefWidth="765.0" promptText="Description preview" wrapText="true">
                <font>
                   <Font size="12.0" />
                </font>

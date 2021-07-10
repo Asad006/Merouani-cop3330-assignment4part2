@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.converter.DefaultStringConverter;
 
@@ -26,6 +28,8 @@ public class ItemListController implements Initializable {
     private ObservableList<Item> itemsData = FXCollections.observableArrayList();
     ObservableList<Item> dataIncomplete= FXCollections.observableArrayList();
     ObservableList<Item> dataComplete= FXCollections.observableArrayList();
+
+    private int clickCount=0;
 
     @FXML
     private TableView<Item> itemTableView;
@@ -275,6 +279,27 @@ public class ItemListController implements Initializable {
         System.out.println(index);
 
         previewDescription.setText(itemsData.get(index).getDescription());
+    }
+    @FXML
+    void keyBordPressedDescription(KeyEvent event) {
+        int index = itemTableView.getSelectionModel().getSelectedIndex();
+        if(event.getCode().equals(KeyCode.ENTER))
+        {
+            previewDescription.setEditable(false);
+            itemsData.get(index).setDescription(previewDescription.getText());
+        }
+    }
+
+    @FXML
+    void descriptionPreviewMouseClicked(MouseEvent event) {
+        int index = itemTableView.getSelectionModel().getSelectedIndex();
+        System.out.println(index);
+         clickCount++;
+         if (clickCount%2==0 && index>=0){
+             previewDescription.setEditable(true);
+             System.out.println("edit");
+             clickCount=0;
+         }
     }
 
 }
