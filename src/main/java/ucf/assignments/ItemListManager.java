@@ -24,7 +24,6 @@ import java.io.IOException;
 public class ItemListManager {
     ItemListApp application = new ItemListApp();
 
-
     public void sort(TableView table, TableColumn column){
         // call the built in sort method of the Observable Object.
 
@@ -37,38 +36,30 @@ public class ItemListManager {
         // write the data in the file
         // close the file
         File file = getFileChooser();
-
-        saveInJsonFile(file, dataList);
+        String path = file.getPath();
+        saveInJsonFile(path, dataList);
 
     }
 
-    private void saveInJsonFile(File file, ObservableList<Item>  dataList) {
+    private void saveInJsonFile(String path, ObservableList<Item>  dataList) {
         Gson gson = FxGson.coreBuilder().setPrettyPrinting().disableHtmlEscaping().create();
-        JsonArray jArray = new JsonArray();
 
-        JSONArray jsonArray = new JSONArray();
-        JSONObject jsonObject = new JSONObject();
-        if (file != null) {
+        if (!path.equals("")) {
             try {
-                String path = file.getPath();
-
-                FileWriter file1 = new FileWriter(path+".json");
-
-                file1.write("[");
+                FileWriter file = new FileWriter(path+".json");
+                file.write("[");
 
                 for (int i = 0; i < dataList.size(); i++) {
-                    file1.write(gson.toJson(dataList.get(i)));
+                    file.write(gson.toJson(dataList.get(i)));
 
                     if (i< dataList.size()-1) {
-                        file1.write(",");
+                        file.write(",");
                     }
-
                 }
 
-
-                file1.write("]");
-                file1.flush();
-                file1.close();
+                file.write("]");
+                file.flush();
+                file.close();
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -152,14 +143,24 @@ public class ItemListManager {
         // call start method of the TodoListApp object
     }
 
-    public void open() {
+    public ObservableList<Item> open() {
         // open windows dialogue
         // enable the user navigate in folders
         // enable the user to select the file
         // open the Json data file
         // load the new data to the interface
+        Stage stage= new Stage();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open File");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*"));
+        File file =fileChooser.showOpenDialog(stage);
 
+        ObservableList<Item> dateFile = processFile(file.getPath());
+
+        return dateFile;
     }
+
+
 
     public void close() {
         // get the instance of the current application from main
