@@ -1,6 +1,6 @@
-## Help section for the Item List application
+## Help section for the Item List Application
 This application is intended to help the user to manage a list of items that contains a description, due date, 
-and status. The following section helps the user to get familiar with the functionality of the application.
+and status. The following sections helps the user to get familiar with the functionality of the application.
 
 #### Open file
 Tto open a file click on the file located in the menuBar at the top of the application.Another menu will pop up, 
