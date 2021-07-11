@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import javax.swing.text.TabableView;
 
+import java.io.File;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ItemListManagerTest {
@@ -209,6 +211,42 @@ class ItemListManagerTest {
         assertEquals(expectedData, actualData);
 
     }
+
+    @Test
+    void Open() {
+
+        // load File
+        // create an object of type ItemListManger
+        // call function process file
+        // create new expected and actual data collection
+        // assert this two data collections
+        ItemListManager itemListManager = new ItemListManager();
+
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("TestFile.json").getFile());
+        System.out.println(file.getAbsolutePath());
+
+        ObservableList<Item> expectedData = FXCollections.observableArrayList();
+        ObservableList<Item> actualData = FXCollections.observableArrayList();
+
+        Item item = new Item("test", "test description", "2021-07-16", "Complete");
+        Item item1 = new Item("Shop", "test description", "2021-07-23", "Incomplete");
+        Item item2 = new Item("Sleep", "Get enough sleep", "2021-08-07", "Complete");
+
+        expectedData.add(item);
+        expectedData.add(item1);
+        expectedData.add(item2);
+
+        actualData = itemListManager.processFile(file.getPath());
+        for (int i = 0; i < 3; i++) {
+            assertEquals(expectedData.get(i).getItemName(),actualData.get(i).getItemName());
+            assertEquals(expectedData.get(i).getDescription(),actualData.get(i).getDescription());
+            assertEquals(expectedData.get(i).getDueDate(),actualData.get(i).getDueDate());
+            assertEquals(expectedData.get(i).getStatus(),actualData.get(i).getStatus());
+        }
+
+    }
+
 
 /*
     @Test

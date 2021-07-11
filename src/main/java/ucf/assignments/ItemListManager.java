@@ -140,12 +140,6 @@ public class ItemListManager {
         // Load the  observable collection data to the TableView To display.
         return itemsData;
     }
-    public void newApp() {
-        // this allows the user to load multiple file in different application.
-        // creates object from the TodoListApp.
-        // build new stage
-        // call start method of the TodoListApp object
-    }
 
     public ObservableList<Item> open() {
         // open windows dialogue
@@ -164,7 +158,7 @@ public class ItemListManager {
         return dateFile;
     }
 
-    private ObservableList<Item> processFile(String path) {
+    public ObservableList<Item> processFile(String path) {
         ObservableList<Item> dataList = FXCollections.observableArrayList();
         Item[] itemDataArray ;
 
