@@ -94,20 +94,23 @@ class ItemListManagerTest {
         // then
         //assertEquals(expectedData,actualData);
         ItemListManager itemListManager = new ItemListManager();
-        String nameItem = "Shop";
-        String description = "make sure you do the groceries";
-        String dueDate = "2021-07-12";
 
-        ObservableList<Item> expectedData = FXCollections.observableArrayList();
         ObservableList<Item> actualData = FXCollections.observableArrayList();
 
-        Item item = new Item(nameItem, description, dueDate);
-        actualData.add(item);
+        Item item = new Item("test", "test description", "2021-07-16", "Complete");
+        Item item1 = new Item("Shop", "test description", "2021-07-23", "Incomplete");
+        Item item2 = new Item("Sleep", "Get enough sleep", "2021-08-07", "Complete");
 
+        actualData.add(item1);
+        actualData.add(item2);
+        actualData.add(item);
 
         itemListManager.clear(actualData);
 
-        assertEquals(expectedData, actualData);
+        int actualSize = actualData.size();
+        int expectedSize = 0;
+
+        assertEquals(expectedSize, actualSize);
 
 
     }
@@ -145,6 +148,7 @@ class ItemListManagerTest {
         assertEquals(expectedData, actualData);
 
     }
+
     @Test
     void showIncompleteItems() {
         // Given
@@ -179,6 +183,7 @@ class ItemListManagerTest {
         assertEquals(expectedData, actualData);
 
     }
+
     @Test
     void showAllItems() {
         // Given
@@ -240,10 +245,10 @@ class ItemListManagerTest {
 
         actualData = itemListManager.processFile(file.getPath());
         for (int i = 0; i < 3; i++) {
-            assertEquals(expectedData.get(i).getItemName(),actualData.get(i).getItemName());
-            assertEquals(expectedData.get(i).getDescription(),actualData.get(i).getDescription());
-            assertEquals(expectedData.get(i).getDueDate(),actualData.get(i).getDueDate());
-            assertEquals(expectedData.get(i).getStatus(),actualData.get(i).getStatus());
+            assertEquals(expectedData.get(i).getItemName(), actualData.get(i).getItemName());
+            assertEquals(expectedData.get(i).getDescription(), actualData.get(i).getDescription());
+            assertEquals(expectedData.get(i).getDueDate(), actualData.get(i).getDueDate());
+            assertEquals(expectedData.get(i).getStatus(), actualData.get(i).getStatus());
         }
 
     }
@@ -273,8 +278,8 @@ class ItemListManagerTest {
         actualData.add(item1);
         actualData.add(item2);
 
-        itemListManager.saveInJsonFile("src/test/resources/TestFileSave",actualData);
-        String actual="";
+        itemListManager.saveInJsonFile("src/test/resources/TestFileSave", actualData);
+        String actual = "";
 
         try {
             ClassLoader classLoader = getClass().getClassLoader();
@@ -285,7 +290,7 @@ class ItemListManagerTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String expected ="[{\n" +
+        String expected = "[{\n" +
                 "  \"itemName\": \"test\",\n" +
                 "  \"description\": \"test description\",\n" +
                 "  \"dueDate\": \"2021-07-16\",\n" +
@@ -302,7 +307,7 @@ class ItemListManagerTest {
                 "  \"status\": \"Complete\"\n" +
                 "}]";
 
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -335,13 +340,13 @@ class ItemListManagerTest {
         actualData.add(item2);
         actualData.add(item);
 
-        actualData= itemListManager.sort(actualData);
+        actualData = itemListManager.sort(actualData);
 
         for (int i = 0; i < 3; i++) {
-            assertEquals(expectedData.get(i).getItemName(),actualData.get(i).getItemName());
-            assertEquals(expectedData.get(i).getDescription(),actualData.get(i).getDescription());
-            assertEquals(expectedData.get(i).getDueDate(),actualData.get(i).getDueDate());
-            assertEquals(expectedData.get(i).getStatus(),actualData.get(i).getStatus());
+            assertEquals(expectedData.get(i).getItemName(), actualData.get(i).getItemName());
+            assertEquals(expectedData.get(i).getDescription(), actualData.get(i).getDescription());
+            assertEquals(expectedData.get(i).getDueDate(), actualData.get(i).getDueDate());
+            assertEquals(expectedData.get(i).getStatus(), actualData.get(i).getStatus());
         }
 
     }

@@ -24,7 +24,6 @@ import java.util.Comparator;
 
 
 public class ItemListManager {
-    ItemListApp application = new ItemListApp();
 
     public ObservableList<Item> sort(ObservableList<Item> itemSorted) {
         // call the built in sort method of the Observable Object.
@@ -186,8 +185,11 @@ public class ItemListManager {
     }
 
     public ObservableList<Item> clear(ObservableList<Item> itemsData) {
-        for (int i = 0; i < itemsData.size(); i++) {
-            itemsData.remove(i);
+        int size = itemsData.size();
+        while (size>0) {
+
+            itemsData.remove(size-1);
+            size = itemsData.size();
         }
 
         return itemsData;
