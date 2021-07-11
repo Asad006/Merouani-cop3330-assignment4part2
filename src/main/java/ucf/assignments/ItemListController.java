@@ -39,12 +39,6 @@ public class ItemListController implements Initializable {
     private MenuBar menuBar;
 
     @FXML
-    private MenuItem closeMenu;
-
-    @FXML
-    private MenuItem newMenu;
-
-    @FXML
     private MenuItem openMenu;
 
     @FXML
@@ -57,13 +51,7 @@ public class ItemListController implements Initializable {
     private MenuItem showIncompleteItemsMenu;
 
     @FXML
-    private MenuItem saveTaskMenu;
-
-    @FXML
     private MenuItem saveItemsMenu;
-
-    @FXML
-    private TableColumn toDoColumn;
 
     @FXML
     private TableColumn Items;
@@ -87,26 +75,13 @@ public class ItemListController implements Initializable {
     private TextArea previewDescription;
 
     @FXML
-    private TextField addToDoListText;
-
-    @FXML
-    private Button AddTaskButton;
-
-    @FXML
     private TextArea descriptionTextArea;
 
     @FXML
     private TextField itemNameTextField;
 
     @FXML
-    private TextField description;
-
-    @FXML
-    private Button addItem;
-
-
-    @FXML
-    public void addItemClicked(ActionEvent actionEvent) {
+    private void addItemClicked(ActionEvent actionEvent) {
 
         // get the the textField content
         // call TodolistManager to set the the new content into the todolist.
@@ -181,7 +156,7 @@ public class ItemListController implements Initializable {
 
     // Load existing data files
     @FXML
-    void openMenuClicked(ActionEvent event) {
+    private void openMenuClicked(ActionEvent event) {
         // the method open of the todolistTableManager
         itemsData = itemListManager.open();
         itemTableView.setItems(itemsData);
@@ -189,14 +164,14 @@ public class ItemListController implements Initializable {
 
 
     @FXML
-    void closeMenuClicked(ActionEvent event) {
+    private void closeMenuClicked(ActionEvent event) {
         // the method close of the todolistTableManager
 
 
     }
 
     @FXML
-    void showCompleteMenuClicked(ActionEvent event) {
+    private void showCompleteMenuClicked(ActionEvent event) {
         // call show showIncompleteItems method of the todolistTableManager.
         dataComplete = FXCollections.observableArrayList(itemsData);
 
@@ -206,7 +181,7 @@ public class ItemListController implements Initializable {
     }
 
     @FXML
-    void showIncompleteMenuClicked(ActionEvent event) {
+    private void showIncompleteMenuClicked(ActionEvent event) {
         // call show showIncompleteItems method of the todolistTableManager.
 
         dataIncomplete = FXCollections.observableArrayList(itemsData);
@@ -216,13 +191,13 @@ public class ItemListController implements Initializable {
     }
 
     @FXML
-    void showAllItemsMenuClicked(ActionEvent event) {
+    private void showAllItemsMenuClicked(ActionEvent event) {
         // call show showAllItems method of the todolistTableManager.
         itemTableView.setItems(itemListManager.showAllItems(itemsData));
     }
 
     @FXML
-    void saveItemsClicked(ActionEvent event) {
+    private void saveItemsClicked(ActionEvent event) {
 
         // Get the Observable data collection of the task list
         // call the save function in the ToDoListManager
@@ -230,7 +205,7 @@ public class ItemListController implements Initializable {
     }
 
     @FXML
-    public void deleteItemClicked(ActionEvent actionEvent) {
+    private void deleteItemClicked(ActionEvent actionEvent) {
         // call the method delete of the todolistTaskManager
 
         int index = itemTableView.getSelectionModel().getSelectedIndex();
@@ -238,14 +213,14 @@ public class ItemListController implements Initializable {
     }
 
     @FXML
-    void clearClicked(ActionEvent event) {
+    private void clearClicked(ActionEvent event) {
         // call the itemsListManger object to clear the Dat
         itemsData = itemListManager.clear(itemsData);
         itemTableView.setItems(itemsData);
     }
 
     @FXML
-    void dueDateSelectClicked(ActionEvent event) {
+    private void dueDateSelectClicked(ActionEvent event) {
         LocalDate localDate = dueDatePicker.getValue();
 
         LocalDate today = LocalDate.now();
@@ -262,22 +237,22 @@ public class ItemListController implements Initializable {
     }
 
     @FXML
-    void mouseClicked(MouseEvent event) {
+    private void mouseClicked(MouseEvent event) {
         int index = 0;
         index = itemTableView.getSelectionModel().getSelectedIndex();
-        if (index >= 0){
+
+        if (index >= 0) {
             previewDescription.setText(itemsData.get(index).getDescription());
-            dueDatePreview.setText(itemsData.get(index).getDueDate());
             final DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate localDate = LocalDate.parse(itemsData.get(index).getDueDate());
             dueDatePreviewPicker.setValue(localDate);
-            //dueDatePreviewPicker.set
+
         }
 
     }
 
     @FXML
-    void keyBordPressedDescription(KeyEvent event) {
+    private void keyBordPressedDescription(KeyEvent event) {
         int index = itemTableView.getSelectionModel().getSelectedIndex();
         if (event.getCode().equals(KeyCode.ENTER)) {
             previewDescription.setEditable(false);
@@ -286,7 +261,7 @@ public class ItemListController implements Initializable {
     }
 
     @FXML
-    void descriptionPreviewMouseClicked(MouseEvent event) {
+    private void descriptionPreviewMouseClicked(MouseEvent event) {
         int index = itemTableView.getSelectionModel().getSelectedIndex();
 
         clickCount++;
@@ -297,24 +272,24 @@ public class ItemListController implements Initializable {
     }
 
     @FXML
-    void datePickerPreviewClicked(MouseEvent event) {
+    private void datePickerPreviewClicked(MouseEvent event) {
         int index = itemTableView.getSelectionModel().getSelectedIndex();
-        System.out.println("click");
+
         clickCount++;
+
         if (clickCount % 2 == 0 && index >= 0) {
-            dueDatePreviewPicker.setDisable(false);
             clickCount = 0;
         }
 
     }
 
     @FXML
-    void datePickerPreviewKey(KeyEvent event) {
+    private void datePickerPreviewKey(KeyEvent event) {
         int index = itemTableView.getSelectionModel().getSelectedIndex();
-        if (event.getCode().equals(KeyCode.ENTER)) {
-
-            itemsData.get(index).setDueDate(dueDatePreviewPicker.getValue().toString());
+        if (index >= 0) {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                itemsData.get(index).setDueDate(dueDatePreviewPicker.getValue().toString());
+            }
         }
-
     }
 }

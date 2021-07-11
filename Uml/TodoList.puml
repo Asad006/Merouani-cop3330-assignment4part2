@@ -14,31 +14,46 @@ class ItemListManager{
 }
 
 class ItemListController {
-    - todolistTableManager: TodolistTableManager
-    - itemsDataList: ObservableList<Item>
-    - itemsDataIncomplete: ObservableList<Item>
-    - itemsDataComplete: ObservableList<Item>
-    - itemsTableView: TableView<Item>
-    - toDoColumn :TableColumn
-    - items: TableColumn
-    - descriptionColumn:T ableColumn
-    - dueDateColumn: TableColumn
-    - itemName: TextField
-    - description: TextField
-    - addItem: Button
-    - dueDate: TextField
+    
+- final ItemListManager itemListManager = new ItemListManager():
+- dueDate: String
+- itemsData = : ObservableList<Item>
+- dataIncomplete = : ObservableList<Item>
+- dataComplete = : ObservableList<Item>
+- clickCount : int
+- itemTableView : TableView<Item>
+-  menuBar : MenuBar
+-  openMenu : MenuItem
+-  dueDatePicker : DatePicker
+-  showCompleteItemsMenu : MenuItem
+-  showIncompleteItemsMenu : MenuItem
+-  saveItemsMenu : MenuItem
+-  Items : TableColumn
+-  dueDatePreview:TextField
+-  statusColumn : TableColumn
+-  descriptionColumn : TableColumn
+-  dueDateColumn : TableColumn
+-  dueDatePreviewPicker : DatePicker
+-  previewDescription : TextArea
+-  descriptionTextArea : TextArea
+-  itemNameTextField : TextField
++ void initialize()        
+- openMenuClicked()
+- closeMenuClicked()
+- showCompleteMenuClicked()
+- showIncompleteMenuClicked()
+- showAllItemsMenuClicked()
+- saveItemsClicked()
+- deleteItemClicked()
+- clearClicked()
+- dueDateSelectClicked()
+- mouseClicked()
+- keyBordPressedDescription()
+- descriptionPreviewMouseClicked( )
+- datePickerPreviewClicked()
+- datePickerPreviewKey()
 
-     + initialize()
-     + addItemButtonClicked()
-     + saveItemMenuClicked()
-     + deleteItemClicked()
-     + showCompleteMenuClicked()
-     + showInCompleteMenuClicked()
-     + newMenuClicked()
-     + openMenuClicked()
-     + closeMenuClicked()
-     + dueDateSelectClicked()
-     + mouseClicked()
+
 
 
 
