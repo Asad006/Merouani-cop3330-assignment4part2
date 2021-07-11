@@ -19,6 +19,7 @@ import javafx.util.converter.DefaultStringConverter;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class ItemListController implements Initializable {
@@ -26,10 +27,10 @@ public class ItemListController implements Initializable {
     private String dueDate = "";
 
     private ObservableList<Item> itemsData = FXCollections.observableArrayList();
-    ObservableList<Item> dataIncomplete= FXCollections.observableArrayList();
-    ObservableList<Item> dataComplete= FXCollections.observableArrayList();
+    ObservableList<Item> dataIncomplete = FXCollections.observableArrayList();
+    ObservableList<Item> dataComplete = FXCollections.observableArrayList();
 
-    private int clickCount=0;
+    private int clickCount = 0;
 
     @FXML
     private TableView<Item> itemTableView;
@@ -68,6 +69,9 @@ public class ItemListController implements Initializable {
     private TableColumn Items;
 
     @FXML
+    private TextField dueDatePreview;
+
+    @FXML
     private TableColumn statusColumn;
 
     @FXML
@@ -75,6 +79,9 @@ public class ItemListController implements Initializable {
 
     @FXML
     private TableColumn dueDateColumn;
+
+    @FXML
+    private DatePicker dueDatePreviewPicker;
 
     @FXML
     private TextArea previewDescription;
@@ -131,9 +138,9 @@ public class ItemListController implements Initializable {
         } else if (dueDate.equals("")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Missing information.");
-            alert.setHeaderText("Please enter a valid due date.");
-            alert.setContentText("Your date could have an incorrect format.\n " +
-                    "Format should be YYYY-MM-DD.\n \nYour date could be in the past.");
+            alert.setHeaderText("Due Date Field is required.\n");
+            alert.setContentText("*Your date could have an incorrect format.\n " +
+                    "  - Format should be YYYY-MM-DD.\n \n* Your date could be in the past.");
             alert.showAndWait().ifPresent(rs -> {
                 if (rs == ButtonType.OK) {
                     System.out.println("Pressed OK.");
@@ -160,32 +167,15 @@ public class ItemListController implements Initializable {
         // Call setEditable function to make the title editable.
         // call setEditable function to make description and and due date editable
         itemTableView.setEditable(true);
+        itemTableView.getSelectionModel().setCellSelectionEnabled(false);
         itemTableView.setPlaceholder(new Label(" No Data To display"));
 
         descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        dueDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        //dueDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
         ObservableList<String> cbValues = FXCollections.observableArrayList("Incomplete", "Complete");
         statusColumn.setCellFactory(ComboBoxTableCell.forTableColumn(new DefaultStringConverter(), cbValues));
         itemTableView.getSelectionModel().cellSelectionEnabledProperty().set(true);
-
-    }
-
-    @FXML
-    void saveAsClicked(ActionEvent event) {
-
-        // get The variable of the Observable Collection data of the list
-        // get the selected cell from observable collection
-        // create object of the todoTask
-        // call remove function of the observable collection
-
-    }
-
-    // Load multiple application with different data files
-    @FXML
-    void newMenuClicked(ActionEvent event) {
-        // the method new of the todolistTableManager
-
 
     }
 
@@ -244,12 +234,12 @@ public class ItemListController implements Initializable {
         // call the method delete of the todolistTaskManager
 
         int index = itemTableView.getSelectionModel().getSelectedIndex();
-        itemTableView.setItems( itemListManager.delete( itemsData, index));
+        itemTableView.setItems(itemListManager.delete(itemsData, index));
     }
 
     @FXML
     void clearClicked(ActionEvent event) {
-    // call the itemsListManger object to clear the Dat
+        // call the itemsListManger object to clear the Dat
         itemsData = itemListManager.clear(itemsData);
         itemTableView.setItems(itemsData);
     }
@@ -275,16 +265,21 @@ public class ItemListController implements Initializable {
     void mouseClicked(MouseEvent event) {
         int index = 0;
         index = itemTableView.getSelectionModel().getSelectedIndex();
-        System.out.println(index);
-        System.out.println(index);
+        if (index >= 0){
+            previewDescription.setText(itemsData.get(index).getDescription());
+            dueDatePreview.setText(itemsData.get(index).getDueDate());
+            final DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate localDate = LocalDate.parse(itemsData.get(index).getDueDate());
+            dueDatePreviewPicker.setValue(localDate);
+            //dueDatePreviewPicker.set
+        }
 
-        previewDescription.setText(itemsData.get(index).getDescription());
     }
+
     @FXML
     void keyBordPressedDescription(KeyEvent event) {
         int index = itemTableView.getSelectionModel().getSelectedIndex();
-        if(event.getCode().equals(KeyCode.ENTER))
-        {
+        if (event.getCode().equals(KeyCode.ENTER)) {
             previewDescription.setEditable(false);
             itemsData.get(index).setDescription(previewDescription.getText());
         }
@@ -293,13 +288,33 @@ public class ItemListController implements Initializable {
     @FXML
     void descriptionPreviewMouseClicked(MouseEvent event) {
         int index = itemTableView.getSelectionModel().getSelectedIndex();
-        System.out.println(index);
-         clickCount++;
-         if (clickCount%2==0 && index>=0){
-             previewDescription.setEditable(true);
-             System.out.println("edit");
-             clickCount=0;
-         }
+
+        clickCount++;
+        if (clickCount % 2 == 0 && index >= 0) {
+            previewDescription.setEditable(true);
+            clickCount = 0;
+        }
     }
 
+    @FXML
+    void datePickerPreviewClicked(MouseEvent event) {
+        int index = itemTableView.getSelectionModel().getSelectedIndex();
+        System.out.println("click");
+        clickCount++;
+        if (clickCount % 2 == 0 && index >= 0) {
+            dueDatePreviewPicker.setDisable(false);
+            clickCount = 0;
+        }
+
+    }
+
+    @FXML
+    void datePickerPreviewKey(KeyEvent event) {
+        int index = itemTableView.getSelectionModel().getSelectedIndex();
+        if (event.getCode().equals(KeyCode.ENTER)) {
+
+            itemsData.get(index).setDueDate(dueDatePreviewPicker.getValue().toString());
+        }
+
+    }
 }

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -13,6 +15,7 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.ItemListController">
    <children>
@@ -21,9 +24,6 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem fx:id="closeMenu" mnemonicParsing="false" onAction="#closeMenuClicked" text="Close" />
-
-                <MenuItem fx:id="newMenu" mnemonicParsing="false" onAction="#newMenuClicked" text="New" />
-
                 <MenuItem fx:id="openMenu" mnemonicParsing="false" onAction="#openMenuClicked" text="Open" />
               </items>
           </Menu>
@@ -40,7 +40,6 @@
               <Menu mnemonicParsing="false" text="Save">
                   <items>
                       <MenuItem fx:id="saveTaskMenu" mnemonicParsing="false" onAction="#saveItemsClicked" text="Save items" />
-                      <MenuItem fx:id="saveItemsMenu" mnemonicParsing="false" onAction="#saveAsClicked" text="Save Items as " />
                   </items>
 
               </Menu>
@@ -49,21 +48,21 @@
 
             <AnchorPane layoutY="26.0" minHeight="0.0" minWidth="0.0" prefHeight="694.0" prefWidth="1074.0">
                <children>
-                  <TableView fx:id="itemTableView" layoutX="6.0" onMouseClicked="#mouseClicked" prefHeight="482.0" prefWidth="771.0" AnchorPane.bottomAnchor="212.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="297.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="itemTableView" layoutX="294.0" layoutY="41.0" onMouseClicked="#mouseClicked" prefHeight="648.0" prefWidth="407.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="294.0" AnchorPane.rightAnchor="373.0" AnchorPane.topAnchor="41.0">
                      <columns>
                         <TableColumn fx:id="itemsColumn" prefWidth="119.0" resizable="false" text="Items">
                             <cellValueFactory><PropertyValueFactory property="itemName" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="descriptionColumn" maxWidth="1.7976931348623157E308" prefWidth="450.0" resizable="false" text="Description">
+                        <TableColumn fx:id="descriptionColumn" maxWidth="1.7976931348623157E308" prefWidth="93.0" resizable="false" text="Description">
                          <cellValueFactory><PropertyValueFactory property="description" />
                          </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="dueDateColumn"  prefWidth="101.0" text="Due Date">
+                        <TableColumn fx:id="dueDateColumn" prefWidth="90.0" text="Due Date">
                          <cellValueFactory><PropertyValueFactory property="dueDate" />
                          </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="statusColumn" prefWidth="115.0" text="Status">
+                        <TableColumn fx:id="statusColumn" prefWidth="102.0" text="Status">
                             <cellValueFactory><PropertyValueFactory property="status" />
                             </cellValueFactory>
                      </TableColumn>
@@ -73,17 +72,26 @@
                           </FXCollections>
                       </items>
                   </TableView>
-                  <TextField fx:id="itemNameTextField" layoutX="788.0" layoutY="72.0" prefHeight="25.0" prefWidth="270.0" promptText="Item name" />
-                  <Button fx:id="addItem" layoutX="788.0" layoutY="486.0" mnemonicParsing="false" onAction="#addItemClicked" prefHeight="25.0" prefWidth="278.0" text="Add" />
-                  <DatePicker fx:id="dueDatePicker" layoutX="790.0" layoutY="451.0" onAction="#dueDateSelectClicked" prefHeight="25.0" prefWidth="270.0" promptText="Select a due date" />
-                  <Button fx:id="deleteItem" layoutX="800.0" layoutY="28.0" mnemonicParsing="false" onAction="#deleteItemClicked" prefHeight="25.0" prefWidth="116.0" text="Delete Item" />
-                  <Button layoutX="925.0" layoutY="28.0" mnemonicParsing="false" onAction="#clearClicked" prefHeight="25.0" prefWidth="116.0" text="Clear Table" />
-            <TextArea fx:id="descriptionTextArea" layoutX="790.0" layoutY="104.0" prefHeight="337.0" prefWidth="264.0" wrapText="true" />
-            <TextArea fx:id="previewDescription" editable="false" layoutX="9.0" layoutY="486.0" onKeyPressed="#keyBordPressedDescription" onMouseClicked="#descriptionPreviewMouseClicked" prefHeight="200.0" prefWidth="765.0" promptText="Description preview" wrapText="true">
+                  <TextField fx:id="itemNameTextField" layoutX="15.0" layoutY="41.0" prefHeight="25.0" prefWidth="270.0" promptText="Item name" />
+                  <Button fx:id="addItem" layoutX="15.0" layoutY="485.0" mnemonicParsing="false" onAction="#addItemClicked" prefHeight="25.0" prefWidth="270.0" text="Add" />
+                  <DatePicker fx:id="dueDatePicker" editable="false" layoutX="15.0" layoutY="449.0" onAction="#dueDateSelectClicked" prefHeight="25.0" prefWidth="270.0" promptText="Select a due date" />
+                  <Button fx:id="deleteItem" layoutX="297.0" layoutY="11.0" mnemonicParsing="false" onAction="#deleteItemClicked" prefHeight="25.0" prefWidth="116.0" text="Delete Item" />
+                  <Button layoutX="421.0" layoutY="11.0" mnemonicParsing="false" onAction="#clearClicked" prefHeight="25.0" prefWidth="116.0" text="Clear Table" />
+            <TextArea fx:id="descriptionTextArea" layoutX="15.0" layoutY="91.0" prefHeight="337.0" prefWidth="270.0" wrapText="true" />
+            <TextArea fx:id="previewDescription" editable="false" layoutX="710.0" layoutY="83.0" onKeyPressed="#keyBordPressedDescription" onMouseClicked="#descriptionPreviewMouseClicked" prefHeight="308.0" prefWidth="359.0" promptText="Description preview" wrapText="true">
                <font>
                   <Font size="12.0" />
                </font>
             </TextArea>
+            <Label layoutX="710.0" layoutY="66.0" text="Description Preview" />
+            <Label layoutX="710.0" layoutY="406.0" prefHeight="17.0" prefWidth="108.0" text="Due Date Preview" />
+            <Text layoutX="15.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Title" />
+            <Label layoutX="15.0" layoutY="69.0" text="Description" />
+            <Label layoutX="15.0" layoutY="430.0" text="Due Date" />
+            <DatePicker fx:id="dueDatePreviewPicker" editable="false" layoutX="710.0" layoutY="432.0" onKeyPressed="#datePickerPreviewKey" onMouseClicked="#datePickerPreviewClicked" prefHeight="25.0" prefWidth="190.0" promptText="Due Date Preview">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></DatePicker>
                </children>
             </AnchorPane>
    </children>
