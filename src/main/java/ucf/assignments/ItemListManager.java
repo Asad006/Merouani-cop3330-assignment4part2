@@ -28,7 +28,7 @@ import java.util.Arrays;
 public class ItemListManager {
     ItemListApp application = new ItemListApp();
 
-    public void sort(TableView table, TableColumn column){
+    public void sort(TableView table, TableColumn column) {
         // call the built in sort method of the Observable Object.
 
     }
@@ -45,18 +45,18 @@ public class ItemListManager {
 
     }
 
-    public void saveInJsonFile(String path, ObservableList<Item>  dataList) {
+    public void saveInJsonFile(String path, ObservableList<Item> dataList) {
         Gson gson = FxGson.coreBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
         if (!path.equals("")) {
             try {
-                FileWriter file = new FileWriter(path+".json");
+                FileWriter file = new FileWriter(path + ".json");
                 file.write("[");
 
                 for (int i = 0; i < dataList.size(); i++) {
                     file.write(gson.toJson(dataList.get(i)));
 
-                    if (i< dataList.size()-1) {
+                    if (i < dataList.size() - 1) {
                         file.write(",");
                     }
                 }
@@ -72,7 +72,7 @@ public class ItemListManager {
     }
 
     private File getFileChooser() {
-        Stage stage= new Stage();
+        Stage stage = new Stage();
         FileChooser fileChooser = new FileChooser();
 
         fileChooser.setTitle("Save File");
@@ -83,20 +83,7 @@ public class ItemListManager {
         return file;
     }
 
-
-    public void setTableEditable(TableColumn toDoColumn, String columnTittle) {
-
-        // the call of this method will enable the user to edit title of the task
-        // + the description of an item and dueDate
-
-        // call SetCellFactory method to make the cell as text field
-        // call setOnEditCommit and assign click event to the column
-        // set The object of the type ToDoTask with the new entered value
-        // add the new value to the table view data
-        // refresh the Tableview rendering
-    }
-
-    public ObservableList<Item> showIncompleteItems(ObservableList<Item>  itemsData) {
+    public ObservableList<Item> showIncompleteItems(ObservableList<Item> itemsData) {
         // Get Observable Collection data of the list.
         // Create an object of the class ToDoTask.
         // Set the object status to complete.
@@ -105,17 +92,18 @@ public class ItemListManager {
         // Get all the elements of the Observable collection that has a incomplete status.
         // Assign the incomplete items to the New observable collection data.
         // Load the new observable collection data to the TableView To display.
-        ObservableList<Item> incomplete = FXCollections.observableArrayList();;
+        ObservableList<Item> incomplete = FXCollections.observableArrayList();
+        ;
         for (int i = 0; i < itemsData.size(); i++) {
-            String status =itemsData.get(i).getStatus();
-            if (status.equals("Incomplete")){
+            String status = itemsData.get(i).getStatus();
+            if (status.equals("Incomplete")) {
                 incomplete.add(itemsData.get(i));
             }
         }
         return incomplete;
     }
 
-    public ObservableList<Item>  showCompleteItems(ObservableList<Item>  itemsData) {
+    public ObservableList<Item> showCompleteItems(ObservableList<Item> itemsData) {
         // Get Observable Collection data of the list.
         // Create an object of the class ToDoTask.
         // Set the object status to complete.
@@ -125,17 +113,18 @@ public class ItemListManager {
         // Assign the completed items to the New observable collection data.
         // Load the new observable collection data to the TableView To display.
         // call show showIncompleteItems method of the todolistTableManager.
-        ObservableList<Item> complete = FXCollections.observableArrayList();;
+        ObservableList<Item> complete = FXCollections.observableArrayList();
+        ;
         for (int i = 0; i < itemsData.size(); i++) {
-            String status =itemsData.get(i).getStatus();
-            if (status.equals("Complete")){
+            String status = itemsData.get(i).getStatus();
+            if (status.equals("Complete")) {
                 complete.add(itemsData.get(i));
             }
         }
         return complete;
     }
 
-    public ObservableList<Item> showAllItems(ObservableList<Item>  itemsData) {
+    public ObservableList<Item> showAllItems(ObservableList<Item> itemsData) {
         // Get Observable Collection data of the list.
         // Load the  observable collection data to the TableView To display.
         return itemsData;
@@ -147,11 +136,11 @@ public class ItemListManager {
         // enable the user to select the file
         // open the Json data file
         // load the new data to the interface
-        Stage stage= new Stage();
+        Stage stage = new Stage();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open File");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*"));
-        File file =fileChooser.showOpenDialog(stage);
+        File file = fileChooser.showOpenDialog(stage);
 
         ObservableList<Item> dateFile = processFile(file.getPath());
 
@@ -160,17 +149,18 @@ public class ItemListManager {
 
     public ObservableList<Item> processFile(String path) {
         ObservableList<Item> dataList = FXCollections.observableArrayList();
-        Item[] itemDataArray ;
+        Item[] itemDataArray;
 
-        Gson gson = FxGson.coreBuilder().setPrettyPrinting().disableHtmlEscaping().create();;
+        Gson gson = FxGson.coreBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+        ;
         JSONParser jsonParser = new JSONParser();
 
         try {
 
             JSONArray jsonArray = (JSONArray) jsonParser.parse(new FileReader(path));
 
-            String userJson= jsonArray.toJSONString();
-            itemDataArray =gson.fromJson(userJson, Item[].class);
+            String userJson = jsonArray.toJSONString();
+            itemDataArray = gson.fromJson(userJson, Item[].class);
             dataList.addAll(Arrays.asList(itemDataArray));
 
         } catch (IOException | ParseException e) {
@@ -180,17 +170,12 @@ public class ItemListManager {
         return dataList;
     }
 
-    public void close() {
-        // get the instance of the current application from main
-        // terminate the platform application
-
-    }
 
     public void add(ObservableList<Item> itemsData, String itemName, String fieldDescription, String dueDate) {
         itemsData.add(new Item(itemName, fieldDescription, dueDate));
     }
 
-    public ObservableList<Item> delete(ObservableList<Item> itemsData,int index) {
+    public ObservableList<Item> delete(ObservableList<Item> itemsData, int index) {
         // Get Observable Collection data of the list
         // get the selected cell from observable collection
         // create object of the todoTask

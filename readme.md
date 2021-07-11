@@ -42,8 +42,10 @@ permanent the user has to press enter on the keyboard.This option is useful for 
 , for the user can see the whole description.
 #### Edit  Due Date
 To edit the due date. Just go to the date-picker labeled as Due date preview on the right of the application, and 
-select the new date using the calendar then press enter in the keyboard to make the change final. 
+select the new date using the calendar then press *enter* in the keyboard to make the change final. 
 #### Change Status of the Items
 To change the status of the items to complete or incomplete, the user just have to select the row of the items that
 change is applied then go to the Status column in the same rom of the item and double-click. 
 A triangle will appear with the menu to choose between each status.
+#### Dedication
+This is a dedication to Rey. 

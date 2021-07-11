@@ -3,11 +3,14 @@ package ucf.assignments;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.text.TabableView;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -224,7 +227,6 @@ class ItemListManagerTest {
 
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("TestFile.json").getFile());
-        System.out.println(file.getAbsolutePath());
 
         ObservableList<Item> expectedData = FXCollections.observableArrayList();
         ObservableList<Item> actualData = FXCollections.observableArrayList();
@@ -247,8 +249,57 @@ class ItemListManagerTest {
 
     }
 
+    @Test
+    void save() {
+        ItemListManager itemListManager = new ItemListManager();
 
-/*
+        //
+        //File file = new File(classLoader.getResource("TestFileSave").getFile());
+
+        ObservableList<Item> expectedData = FXCollections.observableArrayList();
+        ObservableList<Item> actualData = FXCollections.observableArrayList();
+
+        Item item = new Item("test", "test description", "2021-07-16", "Complete");
+        Item item1 = new Item("Shop", "test description", "2021-07-23", "Incomplete");
+        Item item2 = new Item("Sleep", "Get enough sleep", "2021-08-07", "Complete");
+
+        actualData.add(item);
+        actualData.add(item1);
+        actualData.add(item2);
+
+        itemListManager.saveInJsonFile("src/test/resources/TestFileSave",actualData);
+        String actual="";
+
+        try {
+            ClassLoader classLoader = getClass().getClassLoader();
+            File file = new File(classLoader.getResource("TestFileSave.json").getFile());
+
+            actual = FileUtils.readFileToString(new File(file.getPath()), StandardCharsets.UTF_8);
+            System.out.println(actual);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String expected ="[{\n" +
+                "  \"itemName\": \"test\",\n" +
+                "  \"description\": \"test description\",\n" +
+                "  \"dueDate\": \"2021-07-16\",\n" +
+                "  \"status\": \"Complete\"\n" +
+                "},{\n" +
+                "  \"itemName\": \"Shop\",\n" +
+                "  \"description\": \"test description\",\n" +
+                "  \"dueDate\": \"2021-07-23\",\n" +
+                "  \"status\": \"Incomplete\"\n" +
+                "},{\n" +
+                "  \"itemName\": \"Sleep\",\n" +
+                "  \"description\": \"Get enough sleep\",\n" +
+                "  \"dueDate\": \"2021-08-07\",\n" +
+                "  \"status\": \"Complete\"\n" +
+                "}]";
+
+        assertEquals(expected,actual);
+    }
+
     @Test
     void sort() {
         // Given
@@ -264,22 +315,4 @@ class ItemListManagerTest {
 
     }
 
-    @Test
-    void setTableEditable() {
-        // Given
-        // create an object TodoListTableManager
-        // actualData Observable  Collection object set data
-        // create actualData Observable Collection in lexicographic order
-
-        // when...
-        // call setTableEditable() to edit the cell and change it to the expectedData
-
-        // then
-        //assertEquals(expectedData,actualData);
-    }
-
-
-
-
-    }*/
 }
