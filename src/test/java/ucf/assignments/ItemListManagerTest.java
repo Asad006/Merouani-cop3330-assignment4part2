@@ -2,11 +2,9 @@ package ucf.assignments;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableView;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.text.TabableView;
 
 import java.io.File;
 import java.io.IOException;
@@ -251,8 +249,6 @@ class ItemListManagerTest {
 
     @Test
     void save() {
-        ItemListManager itemListManager = new ItemListManager();
-
         // Given
         // create  an object TodoListTableManager
         // expectedData observable  collection
@@ -263,6 +259,7 @@ class ItemListManagerTest {
 
         // then
         //assertEquals(expectedData,actualData);
+        ItemListManager itemListManager = new ItemListManager();
 
         ObservableList<Item> expectedData = FXCollections.observableArrayList();
         ObservableList<Item> actualData = FXCollections.observableArrayList();
@@ -283,7 +280,6 @@ class ItemListManagerTest {
             File file = new File(classLoader.getResource("TestFileSave.json").getFile());
 
             actual = FileUtils.readFileToString(new File(file.getPath()), StandardCharsets.UTF_8);
-            System.out.println(actual);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -306,21 +302,6 @@ class ItemListManagerTest {
                 "}]";
 
         assertEquals(expected,actual);
-    }
-
-    @Test
-    void sort() {
-        // Given
-        // create an object TodoListTableManager
-        // actualData Observable  Collection object set data
-        // create actualData Observable Collection in lexicographic order
-
-        // when...
-        // call method sort to sort expectedData
-
-        // then
-        //assertEquals(expectedData,actualData);
-
     }
 
 }

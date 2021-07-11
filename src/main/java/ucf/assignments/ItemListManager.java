@@ -5,16 +5,12 @@ package ucf.assignments;
  */
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.hildan.fxgson.FxGson;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -28,9 +24,9 @@ import java.util.Arrays;
 public class ItemListManager {
     ItemListApp application = new ItemListApp();
 
-    public void sort(TableView table, TableColumn column) {
+    public ObservableList<Item> sort(ObservableList<Item> itemSorted) {
         // call the built in sort method of the Observable Object.
-
+        return itemSorted;
     }
 
     public void save(ObservableList<Item> dataList) {
@@ -93,7 +89,7 @@ public class ItemListManager {
         // Assign the incomplete items to the New observable collection data.
         // Load the new observable collection data to the TableView To display.
         ObservableList<Item> incomplete = FXCollections.observableArrayList();
-        ;
+
         for (int i = 0; i < itemsData.size(); i++) {
             String status = itemsData.get(i).getStatus();
             if (status.equals("Incomplete")) {
