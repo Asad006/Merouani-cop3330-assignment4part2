@@ -30,6 +30,8 @@ public class ItemListController implements Initializable {
     ObservableList<Item> dataIncomplete = FXCollections.observableArrayList();
     ObservableList<Item> dataComplete = FXCollections.observableArrayList();
 
+    ObservableList<Item> sortByDueDate = FXCollections.observableArrayList();
+
     private int clickCount = 0;
 
     @FXML
@@ -151,7 +153,6 @@ public class ItemListController implements Initializable {
         ObservableList<String> cbValues = FXCollections.observableArrayList("Incomplete", "Complete");
         statusColumn.setCellFactory(ComboBoxTableCell.forTableColumn(new DefaultStringConverter(), cbValues));
         itemTableView.getSelectionModel().cellSelectionEnabledProperty().set(true);
-
     }
 
     // Load existing data files
@@ -292,4 +293,11 @@ public class ItemListController implements Initializable {
         }
     }
 
+    @FXML
+    void sortByDueDate(MouseEvent event) {
+        sortByDueDate = itemTableView.getItems();
+        sortByDueDate= itemListManager.sort(itemsData);
+        itemTableView.setItems(sortByDueDate);
+        System.out.println("sort");
+    }
 }

@@ -7,6 +7,8 @@ package ucf.assignments;
 
 import javafx.beans.property.SimpleStringProperty;
 
+import java.time.LocalDate;
+
 public class Item {
     //  class instance variable
     //  itemName : SimpleStringProperty
@@ -92,5 +94,8 @@ public class Item {
 
     public void setStatus(String status) {
         this.status.set(status);
+    }
+    public LocalDate getDateAsLocal(){
+       return LocalDate.parse(dueDate.get());
     }
 }

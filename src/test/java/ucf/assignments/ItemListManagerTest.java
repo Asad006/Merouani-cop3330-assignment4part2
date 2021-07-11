@@ -2,6 +2,7 @@ package ucf.assignments;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 
@@ -302,6 +303,47 @@ class ItemListManagerTest {
                 "}]";
 
         assertEquals(expected,actual);
+    }
+
+    @Test
+    void sort() {
+        // Given
+        // create an object TodoListTableManager
+        // actualData Observable  Collection object set data
+        // create actualData Observable Collection in lexicographic order
+
+        // when...
+        // call method sort to sort expectedData
+
+        // then
+        //assertEquals(expectedData,actualData);
+        ItemListManager itemListManager = new ItemListManager();
+        ItemListController controller = new ItemListController();
+
+        ObservableList<Item> expectedData = FXCollections.observableArrayList();
+        ObservableList<Item> actualData = FXCollections.observableArrayList();
+
+        Item item = new Item("test", "test description", "2021-07-16", "Complete");
+        Item item1 = new Item("Shop", "test description", "2021-07-23", "Incomplete");
+        Item item2 = new Item("Sleep", "Get enough sleep", "2021-08-07", "Complete");
+
+        expectedData.add(item);
+        expectedData.add(item1);
+        expectedData.add(item2);
+
+        actualData.add(item1);
+        actualData.add(item2);
+        actualData.add(item);
+
+        actualData= itemListManager.sort(actualData);
+
+        for (int i = 0; i < 3; i++) {
+            assertEquals(expectedData.get(i).getItemName(),actualData.get(i).getItemName());
+            assertEquals(expectedData.get(i).getDescription(),actualData.get(i).getDescription());
+            assertEquals(expectedData.get(i).getDueDate(),actualData.get(i).getDueDate());
+            assertEquals(expectedData.get(i).getStatus(),actualData.get(i).getStatus());
+        }
+
     }
 
 }

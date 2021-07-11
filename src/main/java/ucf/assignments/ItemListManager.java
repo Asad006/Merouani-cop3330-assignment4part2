@@ -19,6 +19,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 public class ItemListManager {
@@ -26,6 +28,10 @@ public class ItemListManager {
 
     public ObservableList<Item> sort(ObservableList<Item> itemSorted) {
         // call the built in sort method of the Observable Object.
+        Comparator<Item> byDueDate = Comparator.comparing(Item::getDateAsLocal);
+                //.comparingS(Item:);
+        FXCollections.sort(itemSorted, byDueDate);
+
         return itemSorted;
     }
 

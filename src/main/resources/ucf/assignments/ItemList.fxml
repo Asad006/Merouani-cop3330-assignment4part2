@@ -50,19 +50,19 @@
                <children>
                   <TableView fx:id="itemTableView" layoutX="294.0" layoutY="41.0" onMouseClicked="#mouseClicked" prefHeight="648.0" prefWidth="407.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="294.0" AnchorPane.rightAnchor="373.0" AnchorPane.topAnchor="41.0">
                      <columns>
-                        <TableColumn fx:id="itemsColumn" prefWidth="119.0" resizable="false" text="Items">
+                        <TableColumn fx:id="itemsColumn" prefWidth="119.0" resizable="false" sortable="false" text="Items">
                             <cellValueFactory><PropertyValueFactory property="itemName" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="descriptionColumn" maxWidth="1.7976931348623157E308" prefWidth="93.0" resizable="false" text="Description">
+                        <TableColumn fx:id="descriptionColumn" maxWidth="1.7976931348623157E308" prefWidth="93.0" resizable="false" sortable="false" text="Description">
                          <cellValueFactory><PropertyValueFactory property="description" />
                          </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="dueDateColumn" prefWidth="90.0" text="Due Date">
+                        <TableColumn fx:id="dueDateColumn" editable="false" prefWidth="90.0" sortable="false" text="Due Date">
                          <cellValueFactory><PropertyValueFactory property="dueDate" />
                          </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="statusColumn" prefWidth="102.0" text="Status">
+                        <TableColumn fx:id="statusColumn" prefWidth="102.0" sortable="false" text="Status">
                             <cellValueFactory><PropertyValueFactory property="status" />
                             </cellValueFactory>
                      </TableColumn>
@@ -92,6 +92,7 @@
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></DatePicker>
+            <Button layoutX="546.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#sortByDueDate" prefHeight="25.0" prefWidth="125.0" text="Sort By Due Date" />
                </children>
             </AnchorPane>
    </children>
