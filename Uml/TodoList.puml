@@ -1,27 +1,31 @@
 @startuml
 class ItemListManager{
-- application : ToDoListApp
-+ sortTasks()
-+ delete()
-+ add()
-+ setTableEditable()
-+ displayUncompletedTasks()
-+ displayCompletedTasks()
+
+- ItemListApp application : ItemListApp
+- getFileChooser()
+- processFile()
++ sort()
 + save()
-+ new()
-+ close()
++ saveInJsonFile(
++ showIncompleteItems()
++ showCompleteItems()
++ showAllItems()
 + open()
++ close()
++ add()
++ delete()
++ clear()
 }
 
 class ItemListController {
     
-- final ItemListManager itemListManager = new ItemListManager():
+- itemListManager: ItemListManager
 - dueDate: String
-- itemsData = : ObservableList<Item>
-- dataIncomplete = : ObservableList<Item>
-- dataComplete = : ObservableList<Item>
+- itemsData  : ObservableList
+- dataIncomplete : ObservableList
+- dataComplete : ObservableList
 - clickCount : int
-- itemTableView : TableView<Item>
+- itemTableView : TableView
 -  menuBar : MenuBar
 -  openMenu : MenuItem
 -  dueDatePicker : DatePicker
@@ -37,7 +41,8 @@ class ItemListController {
 -  previewDescription : TextArea
 -  descriptionTextArea : TextArea
 -  itemNameTextField : TextField
-+ void initialize()        
+
++ initialize()
 - openMenuClicked()
 - closeMenuClicked()
 - showCompleteMenuClicked()
