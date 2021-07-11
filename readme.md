@@ -34,15 +34,16 @@ To sort the Items lexicographically click on *Items* header of the column. The f
 and the second click will do descending sorting whereas the third will make the table go back to its initial state.
 Similar option are also available for *Due Date* header.
 #### Edit  Description
-The user has two option to edit the description on a item. The first one is two double-click on the description itself
-in the row. Once  double-click is made the cursor will appear so that the user can edit the description. The second
-option is to use the description preview on the bottom of the application. select the item for with the user wants to
-edit tha description than double-click. The cursor will appear allowing the user to change the text. To make the change
-permanent the user has to press enter on the keyboard.This option is useful for long descriptions
-, for the user can see the whole description.
+The user has two option to edit the description of an item. The first one is two double-click on the description itself
+in the same row if the item. Once  double-click is made the cursor will appear so that the user can edit the 
+description. The second option is to use the description preview on the right of the application. select the item for 
+which the user wants to edit tha description than double-click on the description on the description preview. The cursor
+will appear allowing the user to change the text. To make the change permanent the user has to press *enter* on the 
+keyboard.This option is useful for long descriptions, for the user can see the whole description.
 #### Edit  Due Date
-To edit the due date. Just go to the date-picker labeled as Due date preview on the right of the application, and 
-select the new date using the calendar then press *enter* in the keyboard to make the change final. 
+To edit the due date. Just select the date to change and go to the date-picker labeled as Due date preview on the right
+of the application, and select the new date using the calendar then press *enter* in the keyboard to make the change 
+final. 
 #### Change Status of the Items
 To change the status of the items to complete or incomplete, the user just have to select the row of the items that
 change is applied then go to the Status column in the same rom of the item and double-click. 

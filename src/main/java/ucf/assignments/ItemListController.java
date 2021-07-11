@@ -238,6 +238,10 @@ public class ItemListController implements Initializable {
 
     @FXML
     private void mouseClicked(MouseEvent event) {
+        // add data to DataList when mouse key is clicked
+        // get the index of the row
+        // set the data in the preview description
+        //set text in the due date field
         int index = 0;
         index = itemTableView.getSelectionModel().getSelectedIndex();
 
@@ -253,7 +257,11 @@ public class ItemListController implements Initializable {
 
     @FXML
     private void keyBordPressedDescription(KeyEvent event) {
+        // add data to DataList when Enter key is pressed
+        // get the index of the row
+        // set the data in the preview description
         int index = itemTableView.getSelectionModel().getSelectedIndex();
+
         if (event.getCode().equals(KeyCode.ENTER)) {
             previewDescription.setEditable(false);
             itemsData.get(index).setDescription(previewDescription.getText());
@@ -272,19 +280,10 @@ public class ItemListController implements Initializable {
     }
 
     @FXML
-    private void datePickerPreviewClicked(MouseEvent event) {
-        int index = itemTableView.getSelectionModel().getSelectedIndex();
-
-        clickCount++;
-
-        if (clickCount % 2 == 0 && index >= 0) {
-            clickCount = 0;
-        }
-
-    }
-
-    @FXML
     private void datePickerPreviewKey(KeyEvent event) {
+        // add data to DataList when Enter key is pressed
+        // get the index of the row
+        // set the data in the date picker
         int index = itemTableView.getSelectionModel().getSelectedIndex();
         if (index >= 0) {
             if (event.getCode().equals(KeyCode.ENTER)) {

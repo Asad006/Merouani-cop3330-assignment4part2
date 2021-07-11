@@ -253,8 +253,16 @@ class ItemListManagerTest {
     void save() {
         ItemListManager itemListManager = new ItemListManager();
 
-        //
-        //File file = new File(classLoader.getResource("TestFileSave").getFile());
+        // Given
+        // create  an object TodoListTableManager
+        // expectedData observable  collection
+        // create identical actualData Observable Collection with expected.
+
+        // when...
+        // call method SaveInJsonFile  to change expectedData
+
+        // then
+        //assertEquals(expectedData,actualData);
 
         ObservableList<Item> expectedData = FXCollections.observableArrayList();
         ObservableList<Item> actualData = FXCollections.observableArrayList();
