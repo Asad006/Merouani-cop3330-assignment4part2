@@ -30,9 +30,8 @@ Displays on the table only the Incomplete items in the list.
 **Display all Items**:
 Displays on the table all the items (the completed and the incomplete  items) in the list.
 #### Sort Items
-To sort the Items lexicographically click on *Items* header of the column. The first click will do ascending sorting, 
-and the second click will do descending sorting whereas the third will make the table go back to its initial state.
-Similar option are also available for *Due Date* header.
+To sort the Items by due date, click on *Sort Items By Due Date* located at the top of the table. The sorted table
+will be updated.
 #### Edit  Description
 The user has two option to edit the description of an item. The first one is two double-click on the description itself
 in the same row if the item. Once  double-click is made the cursor will appear so that the user can edit the 
