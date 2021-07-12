@@ -298,6 +298,5 @@ public class ItemListController implements Initializable {
         sortByDueDate = itemTableView.getItems();
         sortByDueDate= itemListManager.sort(itemsData);
         itemTableView.setItems(sortByDueDate);
-        System.out.println("sort");
     }
 }
